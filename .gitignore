@@ -4,3 +4,7 @@
 *.iws
 *.ipr
 *.DS_Store
+
+#gradle
+/build
+/.gradle
