@@ -1,12 +1,7 @@
 package gui;
 
 import javax.swing.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
-/**
- * Created by Bas Schoenmaeckers on 29-9-2016.
- */
 public class MainMenu extends JFrame {
     private JButton singlePlayerButton;
     private JPanel panel1;
@@ -26,4 +21,5 @@ public class MainMenu extends JFrame {
         //center window
         setLocationRelativeTo(null);
     }
+
 }

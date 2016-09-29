@@ -2,5 +2,6 @@ package gui;
 
 import javax.swing.*;
 
-public abstract class GameScreen extends JFrame{
+public abstract class GameScreen extends JFrame {
+
 }
