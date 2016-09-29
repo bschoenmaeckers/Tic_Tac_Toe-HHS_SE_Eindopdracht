@@ -1,7 +1,10 @@
+import gui.GameScreen;
 import gui.MainMenu;
 
 public class Main {
 
+    public static MainMenu menu;
+    public static GameScreen gameScreen;
     static GameController game = new GameController();
 
     public static void main(String[] args) {
