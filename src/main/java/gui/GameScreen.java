@@ -1,6 +1,9 @@
 package gui;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 public abstract class GameScreen extends JFrame {
 
@@ -19,5 +22,18 @@ public abstract class GameScreen extends JFrame {
         setContentPane(panel1);
         setVisible(true);
         pack();
+
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                stopGame();
+                dispose();
+                //TODO open Menu
+            }
+        });
     }
+
+    public abstract void stopGame();
 }
