@@ -1,4 +1,4 @@
-package gui;
+package TicTacToe.gui;
 
 public class SinglePlayerScreen extends GameScreen {
 

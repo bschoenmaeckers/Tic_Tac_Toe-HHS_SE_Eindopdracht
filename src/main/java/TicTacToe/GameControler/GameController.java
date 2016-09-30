@@ -1,8 +1,5 @@
-import gui.GameScreen;
+package TicTacToe.GameControler;
 
-/**
- * Created by DucoSebel on 29-09-16.
- */
 public class GameController {
 
     // TODO: Maybe this is not needed or overused
@@ -20,10 +17,13 @@ public class GameController {
     private Tile[][] field;
     private int size = 3;
     private int moves = 0;
+    private Tile currentTurn;
+    private State gameState = State.NONE;
 
 
-    public GameController() {
+    public GameController(Tile startingTurn) {
 
+        this.currentTurn = startingTurn;
         this.field = new Tile[size][size];
         for (int h = 0; h < size; h++) {
             for (int v = 0; v < size; v++) {
@@ -50,7 +50,11 @@ public class GameController {
         return field[positionH][positionV] == Tile.EMPTY;
 
     }
-    
+
+    public State getGameState() {
+        return gameState;
+    }
+
     /**
      *
      * @param positionH
@@ -63,92 +67,86 @@ public class GameController {
     }
 
     /**
-     * Source mostly thanked to Harewareguy
-     * http://stackoverflow.com/questions/1056316/algorithm-for-determining-tic-tac-toe-game-over
      * @param positionH horizontal position
      * @param positionV vertical postion
      * @param state circle or cross
-     * @return GameState
-     * @throws Exception when there is an illegal move
+     * @return boolean, return true whe move was successful.
      * @todo Better usage of error handling
      */
-    public State move(int positionH, int positionV, Tile state) {
+    public boolean move(int positionH, int positionV, Tile state) {
         System.out.print(positionH + ", " + positionV + " - ");
+        Tile tile = field[positionH][positionV];
+        boolean result;
 
-        if (!positionInGame(positionH, positionV)) {
-            System.out.print("Not In Game - ");
-            return State.ILLIGAL;
+        if (tile != Tile.EMPTY || tile == state || state != currentTurn)
+            return false;
+        else {
+            field[positionH][positionV] = state;
+            checkWin();
+            return true;
         }
+    }
 
-        try {
-            if (!isEmptyTile(positionH, positionV)) {
-                System.out.print("Already something here - ");
-                return State.ILLIGAL;
-            }
-        } catch (Exception e) {
-            System.out.print("Not In Game - ");
-            return State.ILLIGAL;
-        }
+    public void checkWin (){
+        boolean won = false;
 
-        field[positionH][positionV] = state;
+        //Horizontal lines
+        for (int y = 0; y < size; y++) {
 
-        if (state == Tile.EMPTY) {
-            return State.NONE;
-        }
-
-        moves += 1;
-
-        State winner = State.CROSS;
-        if (state == Tile.CIRCLE) {
-            winner = State.CIRCLE;
-        }
-
-        // Check winning action
-        // Horizontal
-        for(int i = 0; i < this.size; i++){
-            if(field[positionH][i] != state)
-                break;
-            if(i == this.size - 1){
-                return winner;
-            }
-        }
-
-        // Vertical
-        for(int i = 0; i < this.size; i++){
-            if(field[i][positionV] != state)
-                break;
-            if(i == this.size - 1){
-                return winner;
-            }
-        }
-
-        // Diagonal
-        if(positionH == positionV){
-            for(int i = 0; i < this.size; i++){
-                if(field[i][i] != state)
+            Tile starTile = field[0][y];
+            for (int x = 0; x < size; x++) {
+                if(starTile != field[x][y] || starTile == Tile.EMPTY)
                     break;
-                if(i == this.size-1){
-                    return winner;
-                }
+                else if (x == 2)
+                    won = true;
             }
-        }
 
-        // Anti diagonal
-        for(int i = 0; i < this.size; i++){
-            if(field[i][(this.size - 1) - i] != state)
+            if(won)
                 break;
-            if(i == this.size-1){
-                return winner;
+        }
+
+        //Vertical lines
+        for (int x = 0; x < size; x++) {
+            Tile startTile = field[x][0];
+            for (int y = 0; y < size; y++) {
+                if(startTile != field[x][y] || startTile == Tile.EMPTY)
+                    break;
+                else if (y == 2)
+                    won = true;
             }
+
+            if(won)
+                break;
         }
 
-        //check draw
-        if(moves == (this.size ^ 2 - 1)){
-            return State.DRAW;
+        //Diagonal lines
+        if
+                (field[1][1] != Tile.EMPTY &&
+                ((field[1][1] == field[0][0] && field[1][1] == field[2][2]) ||
+                (field[1][1] == field[2][0] && field[1][1] == field[0][2])))
+            won = true;
+
+        if (won){
+            System.out.println("Game Won!");
+            if (currentTurn == Tile.CROSS)
+                gameState = State.CROSS;
+            else
+                gameState = State.CIRCLE;
+        }else if(moves >= size*size){
+            System.out.println("Draw!");
+            gameState = State.DRAW;
         }
+        else
+            currentTurn = getOppositePlayer(currentTurn);
+    }
 
-
-        return State.NONE;
+    private Tile getOppositePlayer(Tile player){
+        if (player == Tile.CROSS)
+            return Tile.CIRCLE;
+        else if (player == Tile.CIRCLE)
+            return Tile.CROSS;
+        else
+            return Tile.EMPTY;
     }
 
     /**

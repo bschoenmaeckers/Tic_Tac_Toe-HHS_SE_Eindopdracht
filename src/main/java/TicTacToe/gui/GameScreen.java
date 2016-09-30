@@ -1,9 +1,8 @@
-package gui;
+package TicTacToe.gui;
 
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 public abstract class GameScreen extends JFrame {
 
