@@ -1,14 +1,9 @@
 package TicTacToe.gui;
 
-public class SinglePlayerScreen extends GameScreen {
+public class SinglePlayerScreen extends OfflineGameScreen {
 
     public SinglePlayerScreen() {
         super();
-        //TODO
-    }
-
-    @Override
-    public void stopGame() {
         //TODO
     }
 }

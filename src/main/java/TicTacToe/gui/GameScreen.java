@@ -1,5 +1,7 @@
 package TicTacToe.gui;
 
+import TicTacToe.Main;
+
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -19,7 +21,6 @@ public abstract class GameScreen extends JFrame {
 
     public GameScreen() {
         setContentPane(panel1);
-        setVisible(true);
         pack();
 
         setLocationRelativeTo(null);
@@ -29,9 +30,12 @@ public abstract class GameScreen extends JFrame {
             public void windowClosing(WindowEvent e) {
                 stopGame();
                 dispose();
-                //TODO open Menu
+                Main.gameScreen = null;
+                Main.menu = new MainMenu();
             }
         });
+
+        setVisible(true);
     }
 
     public abstract void stopGame();
