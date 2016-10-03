@@ -55,20 +55,18 @@ public class GameController {
 
     /**
      * @param positionH horizontal position
-     * @param positionV vertical postion
-     * @param state     circle or cross
+     * @param positionV vertical position
      * @return boolean, return true whe move was successful.
      * @todo Better usage of error handling
      */
-    public boolean move(int positionH, int positionV, Tile state) {
-        System.out.print(positionH + ", " + positionV + " - ");
+    public boolean move(int positionH, int positionV) {
         Tile tile = field[positionH][positionV];
-        boolean result;
+        printCurrentState();
 
-        if (tile != Tile.EMPTY || tile == state || state != currentTurn) {
+        if (tile != Tile.EMPTY) {
             return false;
         } else {
-            field[positionH][positionV] = state;
+            field[positionH][positionV] = currentTurn;
             checkWin();
             return true;
         }
@@ -176,7 +174,7 @@ public class GameController {
     }
 
     public enum State {
-        CIRCLE, CROSS, DRAW, NONE, ILLIGAL;
+        CIRCLE, CROSS, DRAW, NONE;
     }
 
 }
