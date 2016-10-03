@@ -15,27 +15,27 @@ public class GameController {
         this.currentState = (startingTurn == Tile.CIRCLE) ? State.CIRCLE : State.CROSS;
 
         this.field = new Tile[size][size];
-        for (int h = 0; h < size; h++) {
-            for (int v = 0; v < size; v++) {
-                field[h][v] = Tile.EMPTY;
+        for (int x = 0; x < size; x++) {
+            for (int y = 0; y < size; y++) {
+                field[x][y] = Tile.EMPTY;
             }
         }
     }
 
     /**
-     * @param positionH
-     * @param positionV
+     * @param positionX
+     * @param positionY
      * @return
      * @throws Exception
      * @todo Better usage of error handling
      */
-    public boolean isEmptyTile(int positionH, int positionV) throws Exception {
-        if (!positionInGame(positionH, positionV)) {
+    public boolean isEmptyTile(int positionX, int positionY) throws Exception {
+        if (!positionInGame(positionX, positionY)) {
             throw new Exception("Position exceeds gamesize");
         }
 
-        System.out.print(field[positionH][positionV] + " - ");
-        return field[positionH][positionV] == Tile.EMPTY;
+        System.out.print(field[positionX][positionY] + " - ");
+        return field[positionX][positionY] == Tile.EMPTY;
 
     }
 
@@ -44,30 +44,30 @@ public class GameController {
     }
 
     /**
-     * @param positionH
-     * @param positionV
+     * @param positionX
+     * @param positionY
      * @return boolean IsInPostion
      */
-    public boolean positionInGame(int positionH, int positionV) {
-        return !(positionH < 0 || positionH > this.size ||
-                positionV < 0 || positionV > this.size);
+    public boolean positionInGame(int positionX, int positionY) {
+        return !(positionX < 0 || positionY > this.size ||
+                positionX < 0 || positionY > this.size);
     }
 
     /**
-     * @param positionH horizontal position
-     * @param positionV vertical position
+     * @param positionX horizontal position
+     * @param positionY vertical position
      * @return boolean, return true whe move was successful.
      * @todo Better usage of error handling
      */
-    public boolean move(int positionH, int positionV) {
-        Tile tile = field[positionH][positionV];
-        printCurrentState();
+    public boolean move(int positionX, int positionY) {
+        Tile tile = field[positionX][positionY];
 
         if (tile != Tile.EMPTY) {
             return false;
         } else {
-            field[positionH][positionV] = (currentState == State.CIRCLE) ? Tile.CIRCLE : Tile.CROSS;
+            field[positionX][positionY] = (currentState == State.CIRCLE) ? Tile.CIRCLE : Tile.CROSS;
             checkCurrentState();
+            printCurrentState();
             return true;
         }
     }
@@ -146,10 +146,10 @@ public class GameController {
      * Debugging purpose
      */
     public void printCurrentState() {
-        for (int h = 0; h < size; h++) {
-            for (int v = 0; v < size; v++) {
+        for (int y = 0; y < size; y++) {
+            for (int x = 0; x < size; x++) {
 
-                switch (field[h][v]) {
+                switch (field[x][y]) {
                     case EMPTY:
                         System.out.print("_");
                         break;
