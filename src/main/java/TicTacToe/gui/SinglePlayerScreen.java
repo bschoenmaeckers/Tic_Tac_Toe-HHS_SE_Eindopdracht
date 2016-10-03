@@ -6,4 +6,9 @@ public class SinglePlayerScreen extends OfflineGameScreen {
         super();
         //TODO
     }
+
+    @Override
+    public void doMove(int x, int y) {
+
+    }
 }

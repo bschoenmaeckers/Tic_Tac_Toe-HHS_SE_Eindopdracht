@@ -8,7 +8,7 @@ public class Main {
 
     public static MainMenu menu;
     public static GameScreen gameScreen;
-    static GameController game;
+    public static GameController game;
 
     public static void main(String[] args) {
         //Open main menu

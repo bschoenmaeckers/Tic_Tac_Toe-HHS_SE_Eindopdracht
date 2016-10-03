@@ -88,6 +88,10 @@ public class GameController {
         }
     }
 
+    public Tile[][] getField() {
+        return field;
+    }
+
     public void checkWin (){
         boolean won = false;
 
@@ -143,6 +147,7 @@ public class GameController {
         } else if(moves >= size*size){
             System.out.println("Draw!");
             gameState = State.DRAW;
+
         }
         else {
             currentTurn = getOppositePlayer(currentTurn);
