@@ -44,11 +44,11 @@ public abstract class GameScreen extends JFrame {
             }
         });
 
-        for (int i = 0; i < buttons.length; i++) {
+        for (int i = 0; i < buttons.length; i++) { //Rows
             for (int j = 0; j < buttons[i].length; j++) {
                 final int x = j;
                 final int y = i;
-                buttons[x][y].addActionListener(new ActionListener() {
+                buttons[y][x].addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         doMove(x, y);
