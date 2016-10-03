@@ -21,11 +21,11 @@ public abstract class GameScreen extends JFrame {
     private JButton B3;
     private JButton A3;
 
-    private JButton[][] Buttons = //x,y
+    private JButton[][] buttons = //x,y
             {
-                    {A1,B1,C1},
-                    {A2,B2,C2},
-                    {A3,B3,C3}
+                    {A1, B1, C1},
+                    {A2, B2, C2},
+                    {A3, B3, C3}
             };
 
     public GameScreen() {
@@ -44,82 +44,26 @@ public abstract class GameScreen extends JFrame {
             }
         });
 
-        int x,y = 0;
-        for (JButton[] row : Buttons) {
-            for (JButton button : row){
-                button.addActionListener(new ActionListener() {
+        for (int i = 0; i < buttons.length; i++) {
+            for (int j = 0; j < buttons[i].length; j++) {
+                final int x = j;
+                final int y = i;
+                buttons[x][y].addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        doMove(new Integer(x++),new Integer(y++));
+                        doMove(x, y);
                     }
                 });
             }
         }
 
-//        A1.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                doMove(0,0);
-//            }
-//        });
-//        A2.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                doMove(0,1);
-//            }
-//        });
-//        A3.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                doMove(0,2);
-//            }
-//        });
-//
-//        B1.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                doMove(1,0);
-//            }
-//        });
-//        B2.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                doMove(1,1);
-//            }
-//        });
-//        B3.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                doMove(1,2);
-//            }
-//        });
-//
-//        C1.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                doMove(2,0);
-//            }
-//        });
-//        C2.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                doMove(2,1);
-//            }
-//        });
-//        C3.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                doMove(2,2);
-//            }
-//        });
+        setVisible(true);
 
-                setVisible(true);
-
-        }
+    }
 
     public abstract void doMove(int x, int y);
 
-    public void updateScreen(){
+    public void updateScreen() {
         for (int i = 0; i < Main.game.getField().length; i++) {
 
         }

@@ -1,4 +1,4 @@
 package TicTacToe.gui;
 
-public abstract class OnlineGameScreen extends GameScreen{
+public abstract class OnlineGameScreen extends GameScreen {
 }

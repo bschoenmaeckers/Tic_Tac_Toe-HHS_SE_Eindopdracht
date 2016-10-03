@@ -2,15 +2,6 @@ package TicTacToe.GameControler;
 
 public class GameController {
 
-    // TODO: Maybe this is not needed or overused
-    public enum Tile {
-        EMPTY, CIRCLE, CROSS
-    }
-
-    public enum State {
-        CIRCLE, CROSS, DRAW, NONE, ILLIGAL;
-    }
-
     /**
      * field[horizontal][vertical]
      */
@@ -19,8 +10,6 @@ public class GameController {
     private int moves = 0;
     private Tile currentTurn;
     private State gameState = State.NONE;
-
-
     public GameController(Tile startingTurn) {
 
         this.currentTurn = startingTurn;
@@ -34,7 +23,6 @@ public class GameController {
     }
 
     /**
-     *
      * @param positionH
      * @param positionV
      * @return
@@ -56,7 +44,6 @@ public class GameController {
     }
 
     /**
-     *
      * @param positionH
      * @param positionV
      * @return boolean IsInPostion
@@ -69,7 +56,7 @@ public class GameController {
     /**
      * @param positionH horizontal position
      * @param positionV vertical postion
-     * @param state circle or cross
+     * @param state     circle or cross
      * @return boolean, return true whe move was successful.
      * @todo Better usage of error handling
      */
@@ -80,8 +67,7 @@ public class GameController {
 
         if (tile != Tile.EMPTY || tile == state || state != currentTurn) {
             return false;
-        }
-        else {
+        } else {
             field[positionH][positionV] = state;
             checkWin();
             return true;
@@ -92,7 +78,7 @@ public class GameController {
         return field;
     }
 
-    public void checkWin (){
+    public void checkWin() {
         boolean won = false;
 
         //Horizontal lines
@@ -100,10 +86,9 @@ public class GameController {
 
             Tile startTile = field[0][y];
             for (int x = 0; x < size; x++) {
-                if(startTile != field[x][y] || startTile == Tile.EMPTY) {
+                if (startTile != field[x][y] || startTile == Tile.EMPTY) {
                     break;
-                }
-                else if (x == 2) {
+                } else if (x == 2) {
                     won = true;
                 }
             }
@@ -117,15 +102,14 @@ public class GameController {
         for (int x = 0; x < size; x++) {
             Tile startTile = field[x][0];
             for (int y = 0; y < size; y++) {
-                if(startTile != field[x][y] || startTile == Tile.EMPTY) {
+                if (startTile != field[x][y] || startTile == Tile.EMPTY) {
                     break;
-                }
-                else if (y == 2) {
+                } else if (y == 2) {
                     won = true;
                 }
             }
 
-            if(won) {
+            if (won) {
                 break;
             }
         }
@@ -136,32 +120,28 @@ public class GameController {
             won = true;
         }
 
-        if (won){
+        if (won) {
             System.out.println("Game Won!");
             if (currentTurn == Tile.CROSS) {
                 gameState = State.CROSS;
-            }
-            else {
+            } else {
                 gameState = State.CIRCLE;
             }
-        } else if(moves >= size*size){
+        } else if (moves >= size * size) {
             System.out.println("Draw!");
             gameState = State.DRAW;
 
-        }
-        else {
+        } else {
             currentTurn = getOppositePlayer(currentTurn);
         }
     }
 
-    private Tile getOppositePlayer(Tile player){
+    private Tile getOppositePlayer(Tile player) {
         if (player == Tile.CROSS) {
             return Tile.CIRCLE;
-        }
-        else if (player == Tile.CIRCLE) {
+        } else if (player == Tile.CIRCLE) {
             return Tile.CROSS;
-        }
-        else {
+        } else {
             return Tile.EMPTY;
         }
     }
@@ -188,6 +168,15 @@ public class GameController {
             }
             System.out.println();
         }
+    }
+
+    // TODO: Maybe this is not needed or overused
+    public enum Tile {
+        EMPTY, CIRCLE, CROSS
+    }
+
+    public enum State {
+        CIRCLE, CROSS, DRAW, NONE, ILLIGAL;
     }
 
 }

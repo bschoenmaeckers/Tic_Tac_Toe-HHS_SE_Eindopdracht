@@ -9,6 +9,6 @@ public class SinglePlayerScreen extends OfflineGameScreen {
 
     @Override
     public void doMove(int x, int y) {
-
+        System.out.println("Click! x = " + x + " y = " + y);
     }
 }
