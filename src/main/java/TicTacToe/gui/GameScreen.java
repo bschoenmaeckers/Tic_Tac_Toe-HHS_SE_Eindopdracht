@@ -31,6 +31,8 @@ public abstract class GameScreen extends JFrame {
 
     public GameScreen() {
         setContentPane(panel1);
+        setTitle("Tic Tac Toe");
+        setResizable(false);
         pack();
 
         setLocationRelativeTo(null);
