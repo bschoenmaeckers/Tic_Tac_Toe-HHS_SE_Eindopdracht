@@ -61,29 +61,14 @@ public abstract class GameScreen extends JFrame {
 
     public abstract void doMove(int x, int y);
 
-    public void gameOver(GameController game){
-        updateScreen(game);
-
-        switch (game.getCurrentState()){
-            case END_DRAW:
-                JOptionPane.showMessageDialog(this,"Draw!");
-                break;
-            case END_CIRCLE:
-                JOptionPane.showMessageDialog(this,"Circle won!");
-                break;
-            case END_CROSS:
-                JOptionPane.showMessageDialog(this,"Cross won!");
-                break;
-        }
-        stopGame();
-    }
+    public abstract void gameOver(GameController game);
 
     public void updateScreen(GameController game) {
         int y = 0;
-        for(JButton[] row: buttons){
+        for (JButton[] row : buttons) {
             int x = 0;
-            for(JButton button : row){
-                if(game.getField()[x][y] != GameController.Tile.EMPTY)
+            for (JButton button : row) {
+                if (game.getField()[x][y] != GameController.Tile.EMPTY)
                     button.setText(game.getField()[x][y].name());
                 x++;
             }
@@ -91,7 +76,7 @@ public abstract class GameScreen extends JFrame {
         }
     }
 
-    public void stopGame(){
+    public void stopGame() {
         dispose();
         Main.gameScreen = null;
         Main.menu = new MainMenu();

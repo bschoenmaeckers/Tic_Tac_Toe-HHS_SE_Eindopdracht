@@ -37,7 +37,6 @@ public class GameController {
     }
 
     /**
-     *
      * @return
      */
     public State getCurrentState() {
@@ -74,7 +73,6 @@ public class GameController {
     }
 
     /**
-     *
      * @return
      */
     public Tile[][] getField() {
@@ -144,12 +142,11 @@ public class GameController {
         }
     }
 
-    boolean isGameOver(){
+    boolean isGameOver() {
         return currentState == State.END_CIRCLE || currentState == State.END_CROSS || currentState == State.END_DRAW;
     }
 
     /**
-     *
      * @param player
      * @return
      */

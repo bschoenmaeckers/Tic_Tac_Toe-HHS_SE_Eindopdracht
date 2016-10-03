@@ -18,15 +18,15 @@ public class SinglePlayerScreen extends OfflineGameScreen {
     public void gameOver(GameController game) {
         updateScreen(game);
 
-        switch (game.getCurrentState()){
+        switch (game.getCurrentState()) {
             case END_DRAW:
-                JOptionPane.showMessageDialog(this,"Draw!");
+                JOptionPane.showMessageDialog(this, "Draw!");
                 break;
             case END_CIRCLE:
-                JOptionPane.showMessageDialog(this,"You won!");
+                JOptionPane.showMessageDialog(this, "You won!");
                 break;
             case END_CROSS:
-                JOptionPane.showMessageDialog(this,"You lost!");
+                JOptionPane.showMessageDialog(this, "You lost!");
                 break;
         }
         stopGame();
