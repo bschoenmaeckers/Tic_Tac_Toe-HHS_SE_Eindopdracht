@@ -27,7 +27,7 @@
             </constraints>
             <properties>
               <font size="20"/>
-              <text value="X"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="a9325" class="javax.swing.JButton" binding="C1">
@@ -63,7 +63,7 @@
             </constraints>
             <properties>
               <font size="20"/>
-              <text value="X"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="5d25b" class="javax.swing.JButton" binding="C2">
@@ -75,7 +75,7 @@
             </constraints>
             <properties>
               <font size="20"/>
-              <text value="O"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="92c07" class="javax.swing.JButton" binding="C3">
@@ -87,7 +87,7 @@
             </constraints>
             <properties>
               <font size="20"/>
-              <text value="X"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="3e561" class="javax.swing.JButton" binding="B3">
@@ -111,7 +111,7 @@
             </constraints>
             <properties>
               <font size="20"/>
-              <text value="O"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="79931" class="javax.swing.JButton" binding="A2">
