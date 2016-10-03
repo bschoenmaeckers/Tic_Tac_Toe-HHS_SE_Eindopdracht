@@ -1,5 +1,6 @@
 package TicTacToe.gui;
 
+import TicTacToe.GameControler.GameController;
 import TicTacToe.Main;
 
 import javax.swing.*;
@@ -63,7 +64,7 @@ public abstract class GameScreen extends JFrame {
 
     public abstract void doMove(int x, int y);
 
-    public void updateScreen() {
+    public void updateScreen(GameController.State state) {
         for (int i = 0; i < Main.game.getField().length; i++) {
 
         }

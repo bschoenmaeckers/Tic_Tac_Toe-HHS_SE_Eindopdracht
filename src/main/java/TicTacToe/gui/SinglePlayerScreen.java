@@ -18,7 +18,7 @@ public class SinglePlayerScreen extends OfflineGameScreen {
         System.out.println("Click! x = " + x + " y = " + y);
 
         if (Main.game.move(x, y)) {
-            this.updateScreen();
+            this.updateScreen(Main.game.getCurrentState());
         }
     }
 }

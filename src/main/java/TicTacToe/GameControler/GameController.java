@@ -8,18 +8,18 @@ public class GameController {
     private Tile[][] field;
     private int size = 3;
     private int moves = 0;
-    private Tile currentTurn;
-    private State gameState = State.NONE;
+    private State currentState;
+
     public GameController(Tile startingTurn) {
 
-        this.currentTurn = startingTurn;
+        this.currentState = (startingTurn == Tile.CIRCLE) ? State.CIRCLE : State.CROSS;
+
         this.field = new Tile[size][size];
         for (int h = 0; h < size; h++) {
             for (int v = 0; v < size; v++) {
                 field[h][v] = Tile.EMPTY;
             }
         }
-
     }
 
     /**
@@ -39,8 +39,8 @@ public class GameController {
 
     }
 
-    public State getGameState() {
-        return gameState;
+    public State getCurrentState() {
+        return currentState;
     }
 
     /**
@@ -66,8 +66,8 @@ public class GameController {
         if (tile != Tile.EMPTY) {
             return false;
         } else {
-            field[positionH][positionV] = currentTurn;
-            checkWin();
+            field[positionH][positionV] = (currentState == State.CIRCLE) ? Tile.CIRCLE : Tile.CROSS;
+            checkCurrentState();
             return true;
         }
     }
@@ -76,7 +76,7 @@ public class GameController {
         return field;
     }
 
-    public void checkWin() {
+    private void checkCurrentState() {
         boolean won = false;
 
         //Horizontal lines
@@ -120,27 +120,25 @@ public class GameController {
 
         if (won) {
             System.out.println("Game Won!");
-            if (currentTurn == Tile.CROSS) {
-                gameState = State.CROSS;
+            if (currentState == State.CROSS) {
+                currentState = State.END_CROSS;
             } else {
-                gameState = State.CIRCLE;
+                currentState = State.END_CROSS;
             }
         } else if (moves >= size * size) {
             System.out.println("Draw!");
-            gameState = State.DRAW;
+            currentState = State.END_DRAW;
 
         } else {
-            currentTurn = getOppositePlayer(currentTurn);
+            currentState = getOppositePlayer(currentState);
         }
     }
 
-    private Tile getOppositePlayer(Tile player) {
-        if (player == Tile.CROSS) {
-            return Tile.CIRCLE;
-        } else if (player == Tile.CIRCLE) {
-            return Tile.CROSS;
+    private State getOppositePlayer(State player) {
+        if (player == State.CROSS) {
+            return State.CIRCLE;
         } else {
-            return Tile.EMPTY;
+            return State.CROSS;
         }
     }
 
@@ -174,7 +172,7 @@ public class GameController {
     }
 
     public enum State {
-        CIRCLE, CROSS, DRAW, NONE;
+        CIRCLE, CROSS, END_DRAW, END_CIRCLE, END_CROSS;
     }
 
 }
