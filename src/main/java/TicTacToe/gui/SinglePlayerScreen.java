@@ -1,6 +1,7 @@
 package TicTacToe.gui;
 
 import TicTacToe.GameControler.GameController;
+import TicTacToe.GameControler.SinglePlayerController;
 import TicTacToe.Main;
 
 public class SinglePlayerScreen extends OfflineGameScreen {
@@ -10,7 +11,7 @@ public class SinglePlayerScreen extends OfflineGameScreen {
     public SinglePlayerScreen() {
         super();
 
-        Main.game = new GameController(GameController.Tile.O);
+        Main.game = new SinglePlayerController(GameController.Tile.O);
     }
 
     @Override

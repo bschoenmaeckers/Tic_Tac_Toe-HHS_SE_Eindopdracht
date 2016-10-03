@@ -23,22 +23,21 @@ public class GameController {
     }
 
     /**
-     * @param positionX
-     * @param positionY
+     * @param positionX Horizontal position
+     * @param positionY Vertical position
      * @return
      * @throws Exception
      * @todo Better usage of error handling
      */
-    public boolean isEmptyTile(int positionX, int positionY) throws Exception {
-        if (!positionInGame(positionX, positionY)) {
-            throw new Exception("Position exceeds gamesize");
-        }
-
-        System.out.print(field[positionX][positionY] + " - ");
+    public boolean isEmptyTile(int positionX, int positionY) {
         return field[positionX][positionY] == Tile.EMPTY;
 
     }
 
+    /**
+     *
+     * @return
+     */
     public State getCurrentState() {
         return currentState;
     }
@@ -72,10 +71,17 @@ public class GameController {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Tile[][] getField() {
         return field;
     }
 
+    /**
+     *
+     */
     private void checkCurrentState() {
         boolean won = false;
 
@@ -134,6 +140,11 @@ public class GameController {
         }
     }
 
+    /**
+     *
+     * @param player
+     * @return
+     */
     private State getOppositePlayer(State player) {
         if (player == State.CROSS) {
             return State.CIRCLE;
@@ -166,11 +177,16 @@ public class GameController {
         }
     }
 
-    // TODO: Maybe this is not needed or overused
+    /**
+     *
+     */
     public enum Tile {
         EMPTY, O, X
     }
 
+    /**
+     *
+     */
     public enum State {
         CIRCLE, CROSS, END_DRAW, END_CIRCLE, END_CROSS
     }
