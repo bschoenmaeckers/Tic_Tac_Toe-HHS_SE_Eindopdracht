@@ -10,7 +10,7 @@ public class SinglePlayerScreen extends OfflineGameScreen {
     public SinglePlayerScreen() {
         super();
 
-        Main.game = new GameController(GameController.Tile.CIRCLE);
+        Main.game = new GameController(GameController.Tile.O);
     }
 
     @Override
@@ -18,7 +18,7 @@ public class SinglePlayerScreen extends OfflineGameScreen {
         System.out.println("Click! x = " + x + " y = " + y);
 
         if (Main.game.move(x, y)) {
-            this.updateScreen(Main.game.getCurrentState());
+            this.updateScreen(Main.game);
         }
     }
 }

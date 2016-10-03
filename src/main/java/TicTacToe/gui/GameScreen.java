@@ -22,7 +22,7 @@ public abstract class GameScreen extends JFrame {
     private JButton B3;
     private JButton A3;
 
-    private JButton[][] buttons = //x,y
+    private JButton[][] buttons = //y,x
             {
                     {A1, B1, C1},
                     {A2, B2, C2},
@@ -64,9 +64,16 @@ public abstract class GameScreen extends JFrame {
 
     public abstract void doMove(int x, int y);
 
-    public void updateScreen(GameController.State state) {
-        for (int i = 0; i < Main.game.getField().length; i++) {
-
+    public void updateScreen(GameController game) {
+        int y = 0;
+        for(JButton[] row: buttons){
+            int x = 0;
+            for(JButton button : row){
+                if(game.getField()[x][y] != GameController.Tile.EMPTY)
+                    button.setText(game.getField()[x][y].name());
+                x++;
+            }
+            y++;
         }
     }
 

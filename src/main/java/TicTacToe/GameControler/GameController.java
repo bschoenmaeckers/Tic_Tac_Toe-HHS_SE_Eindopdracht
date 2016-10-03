@@ -12,7 +12,7 @@ public class GameController {
 
     public GameController(Tile startingTurn) {
 
-        this.currentState = (startingTurn == Tile.CIRCLE) ? State.CIRCLE : State.CROSS;
+        this.currentState = (startingTurn == Tile.O) ? State.CIRCLE : State.CROSS;
 
         this.field = new Tile[size][size];
         for (int x = 0; x < size; x++) {
@@ -65,7 +65,7 @@ public class GameController {
         if (tile != Tile.EMPTY) {
             return false;
         } else {
-            field[positionX][positionY] = (currentState == State.CIRCLE) ? Tile.CIRCLE : Tile.CROSS;
+            field[positionX][positionY] = (currentState == State.CIRCLE) ? Tile.O : Tile.X;
             checkCurrentState();
             printCurrentState();
             return true;
@@ -153,10 +153,10 @@ public class GameController {
                     case EMPTY:
                         System.out.print("_");
                         break;
-                    case CIRCLE:
+                    case O:
                         System.out.print("O");
                         break;
-                    case CROSS:
+                    case X:
                         System.out.print("X");
                         break;
                 }
@@ -168,11 +168,11 @@ public class GameController {
 
     // TODO: Maybe this is not needed or overused
     public enum Tile {
-        EMPTY, CIRCLE, CROSS
+        EMPTY, O, X
     }
 
     public enum State {
-        CIRCLE, CROSS, END_DRAW, END_CIRCLE, END_CROSS;
+        CIRCLE, CROSS, END_DRAW, END_CIRCLE, END_CROSS
     }
 
 }
