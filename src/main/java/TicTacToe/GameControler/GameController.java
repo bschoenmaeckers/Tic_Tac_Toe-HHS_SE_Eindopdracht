@@ -78,8 +78,9 @@ public class GameController {
         Tile tile = field[positionH][positionV];
         boolean result;
 
-        if (tile != Tile.EMPTY || tile == state || state != currentTurn)
+        if (tile != Tile.EMPTY || tile == state || state != currentTurn) {
             return false;
+        }
         else {
             field[positionH][positionV] = state;
             checkWin();
@@ -93,60 +94,71 @@ public class GameController {
         //Horizontal lines
         for (int y = 0; y < size; y++) {
 
-            Tile starTile = field[0][y];
+            Tile startTile = field[0][y];
             for (int x = 0; x < size; x++) {
-                if(starTile != field[x][y] || starTile == Tile.EMPTY)
+                if(startTile != field[x][y] || startTile == Tile.EMPTY) {
                     break;
-                else if (x == 2)
+                }
+                else if (x == 2) {
                     won = true;
+                }
             }
 
-            if(won)
+            if (won) {
                 break;
+            }
         }
 
         //Vertical lines
         for (int x = 0; x < size; x++) {
             Tile startTile = field[x][0];
             for (int y = 0; y < size; y++) {
-                if(startTile != field[x][y] || startTile == Tile.EMPTY)
+                if(startTile != field[x][y] || startTile == Tile.EMPTY) {
                     break;
-                else if (y == 2)
+                }
+                else if (y == 2) {
                     won = true;
+                }
             }
 
-            if(won)
+            if(won) {
                 break;
+            }
         }
 
         //Diagonal lines
-        if
-                (field[1][1] != Tile.EMPTY &&
-                ((field[1][1] == field[0][0] && field[1][1] == field[2][2]) ||
-                (field[1][1] == field[2][0] && field[1][1] == field[0][2])))
+        if (field[1][1] != Tile.EMPTY && ((field[1][1] == field[0][0] && field[1][1] == field[2][2]) ||
+                (field[1][1] == field[2][0] && field[1][1] == field[0][2]))) {
             won = true;
+        }
 
         if (won){
             System.out.println("Game Won!");
-            if (currentTurn == Tile.CROSS)
+            if (currentTurn == Tile.CROSS) {
                 gameState = State.CROSS;
-            else
+            }
+            else {
                 gameState = State.CIRCLE;
-        }else if(moves >= size*size){
+            }
+        } else if(moves >= size*size){
             System.out.println("Draw!");
             gameState = State.DRAW;
         }
-        else
+        else {
             currentTurn = getOppositePlayer(currentTurn);
+        }
     }
 
     private Tile getOppositePlayer(Tile player){
-        if (player == Tile.CROSS)
+        if (player == Tile.CROSS) {
             return Tile.CIRCLE;
-        else if (player == Tile.CIRCLE)
+        }
+        else if (player == Tile.CIRCLE) {
             return Tile.CROSS;
-        else
+        }
+        else {
             return Tile.EMPTY;
+        }
     }
 
     /**

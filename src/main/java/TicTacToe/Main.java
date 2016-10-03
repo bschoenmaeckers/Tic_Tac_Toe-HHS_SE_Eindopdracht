@@ -17,7 +17,7 @@ public class Main {
         game = new GameController(GameController.Tile.CIRCLE);
         move(0, 0, GameController.Tile.CIRCLE);
         move(0, 0, GameController.Tile.CROSS);
-        move(0, 1, GameController.Tile.CROSS); // Illigal
+        move(0, 1, GameController.Tile.CROSS); // Illegal
         move(1, 1, GameController.Tile.CIRCLE);
         move(1, 0, GameController.Tile.CROSS);
         move(2, 2, GameController.Tile.CIRCLE);
