@@ -1,5 +1,7 @@
 package TicTacToe.GameControler;
 
+import TicTacToe.Main;
+
 public class GameController {
 
     /**
@@ -61,7 +63,7 @@ public class GameController {
     public boolean move(int positionX, int positionY) {
         Tile tile = field[positionX][positionY];
 
-        if (tile != Tile.EMPTY) {
+        if (tile != Tile.EMPTY || isGameOver()) {
             return false;
         } else {
             field[positionX][positionY] = (currentState == State.CIRCLE) ? Tile.O : Tile.X;
@@ -128,8 +130,10 @@ public class GameController {
             System.out.println("Game Won!");
             if (currentState == State.CROSS) {
                 currentState = State.END_CROSS;
+                Main.gameScreen.gameOver(this);
             } else {
-                currentState = State.END_CROSS;
+                currentState = State.END_CIRCLE;
+                Main.gameScreen.gameOver(this);
             }
         } else if (moves >= size * size) {
             System.out.println("Draw!");
@@ -138,6 +142,10 @@ public class GameController {
         } else {
             currentState = getOppositePlayer(currentState);
         }
+    }
+
+    boolean isGameOver(){
+        return currentState == State.END_CIRCLE || currentState == State.END_CROSS || currentState == State.END_DRAW;
     }
 
     /**

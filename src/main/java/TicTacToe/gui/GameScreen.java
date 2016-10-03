@@ -39,9 +39,6 @@ public abstract class GameScreen extends JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 stopGame();
-                dispose();
-                Main.gameScreen = null;
-                Main.menu = new MainMenu();
             }
         });
 
@@ -64,6 +61,23 @@ public abstract class GameScreen extends JFrame {
 
     public abstract void doMove(int x, int y);
 
+    public void gameOver(GameController game){
+        updateScreen(game);
+
+        switch (game.getCurrentState()){
+            case END_DRAW:
+                JOptionPane.showMessageDialog(this,"Draw!");
+                break;
+            case END_CIRCLE:
+                JOptionPane.showMessageDialog(this,"Circle won!");
+                break;
+            case END_CROSS:
+                JOptionPane.showMessageDialog(this,"Cross won!");
+                break;
+        }
+        stopGame();
+    }
+
     public void updateScreen(GameController game) {
         int y = 0;
         for(JButton[] row: buttons){
@@ -77,5 +91,9 @@ public abstract class GameScreen extends JFrame {
         }
     }
 
-    public abstract void stopGame();
+    public void stopGame(){
+        dispose();
+        Main.gameScreen = null;
+        Main.menu = new MainMenu();
+    }
 }
