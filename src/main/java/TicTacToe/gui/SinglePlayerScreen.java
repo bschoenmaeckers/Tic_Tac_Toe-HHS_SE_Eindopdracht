@@ -12,6 +12,13 @@ public class SinglePlayerScreen extends OfflineGameScreen {
         super();
 
         Main.game = new SinglePlayerController(GameController.Tile.O);
+        currentTurn.setText("Your turn");
+    }
+
+    @Override
+    public void updateScreen(GameController game) {
+        super.updateScreen(game);
+        currentTurn.setText("Your turn");
     }
 
     @Override

@@ -66,6 +66,7 @@ public class GameController {
             return false;
         } else {
             field[positionX][positionY] = (currentState == State.CIRCLE) ? Tile.O : Tile.X;
+            moves++;
             checkCurrentState();
             printCurrentState();
             return true;
@@ -136,13 +137,13 @@ public class GameController {
         } else if (moves >= size * size) {
             System.out.println("Draw!");
             currentState = State.END_DRAW;
-
+            Main.gameScreen.gameOver(this);
         } else {
             currentState = getOppositePlayer(currentState);
         }
     }
 
-    boolean isGameOver() {
+    public boolean isGameOver() {
         return currentState == State.END_CIRCLE || currentState == State.END_CROSS || currentState == State.END_DRAW;
     }
 

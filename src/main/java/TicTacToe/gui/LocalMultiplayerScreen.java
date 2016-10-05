@@ -10,6 +10,7 @@ public class LocalMultiplayerScreen extends OfflineGameScreen {
         super();
 
         Main.game = new GameController(GameController.Tile.O);
+        currentTurn.setText("CIRCLE");
     }
 
     @Override
