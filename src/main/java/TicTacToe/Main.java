@@ -11,7 +11,8 @@ public class Main {
     public static GameController game;
 
     public static void main(String[] args) {
-        //Open main menu
-        MainMenu menu = new MainMenu();
+
+        // Open main menu
+        menu = new MainMenu();
     }
 }

@@ -27,9 +27,7 @@ public class GameController {
     /**
      * @param positionX Horizontal position
      * @param positionY Vertical position
-     * @return
-     * @throws Exception
-     * @todo Better usage of error handling
+     * @return true when current tile is empty
      */
     public boolean isEmptyTile(int positionX, int positionY) {
         return field[positionX][positionY] == Tile.EMPTY;
@@ -37,32 +35,21 @@ public class GameController {
     }
 
     /**
-     * @return
+     * @return current state of game
      */
     public State getCurrentState() {
         return currentState;
     }
 
     /**
-     * @param positionX
-     * @param positionY
-     * @return boolean IsInPostion
-     */
-    public boolean positionInGame(int positionX, int positionY) {
-        return !(positionX < 0 || positionY > this.size ||
-                positionX < 0 || positionY > this.size);
-    }
-
-    /**
      * @param positionX horizontal position
      * @param positionY vertical position
      * @return boolean, return true whe move was successful.
-     * @todo Better usage of error handling
      */
     public boolean move(int positionX, int positionY) {
         Tile tile = field[positionX][positionY];
 
-        if (tile != Tile.EMPTY || isGameOver()) {
+        if (tile != Tile.EMPTY || isGameEnded()) {
             return false;
         } else {
             field[positionX][positionY] = (currentState == State.CIRCLE) ? Tile.O : Tile.X;
@@ -74,14 +61,15 @@ public class GameController {
     }
 
     /**
-     * @return
+     * @return current gameField array
      */
     public Tile[][] getField() {
         return field;
     }
 
     /**
-     *
+     * Check current playboard and define if there is a different state
+     * Updates currentState variable
      */
     private void checkCurrentState() {
         boolean won = false;
@@ -91,35 +79,34 @@ public class GameController {
 
             Tile startTile = field[0][y];
             for (int x = 0; x < size; x++) {
-                if (startTile != field[x][y] || startTile == Tile.EMPTY) {
+                if (startTile != field[x][y] || startTile == Tile.EMPTY)
                     break;
-                } else if (x == 2) {
+                else if (x == 2)
                     won = true;
-                }
+
             }
 
-            if (won) {
+            if (won)
                 break;
-            }
+
         }
 
         //Vertical lines
         for (int x = 0; x < size; x++) {
             Tile startTile = field[x][0];
             for (int y = 0; y < size; y++) {
-                if (startTile != field[x][y] || startTile == Tile.EMPTY) {
+                if (startTile != field[x][y] || startTile == Tile.EMPTY)
                     break;
-                } else if (y == 2) {
+                else if (y == 2)
                     won = true;
-                }
             }
 
-            if (won) {
+            if (won)
                 break;
-            }
         }
 
-        //Diagonal lines
+        // Diagonal lines
+        // TODO: Add variable gamesize
         if (field[1][1] != Tile.EMPTY && ((field[1][1] == field[0][0] && field[1][1] == field[2][2]) ||
                 (field[1][1] == field[2][0] && field[1][1] == field[0][2]))) {
             won = true;
@@ -143,23 +130,24 @@ public class GameController {
         }
     }
 
-    public boolean isGameOver() {
+    /**
+     * Returns of the game is finished
+     * @return true when game is flagged as ended
+     */
+    public boolean isGameEnded() {
         return currentState == State.END_CIRCLE || currentState == State.END_CROSS || currentState == State.END_DRAW;
     }
 
     /**
-     * @param player
-     * @return
+     * @param player player State to be flipped
+     * @return Opposite player State
      */
     private State getOppositePlayer(State player) {
-        if (player == State.CROSS) {
-            return State.CIRCLE;
-        } else {
-            return State.CROSS;
-        }
+        return (player == State.CROSS) ? State.CIRCLE : State.CROSS;
     }
 
     /**
+     * Display current population of field in terminal
      * Debugging purpose
      */
     public void printCurrentState() {
@@ -184,14 +172,14 @@ public class GameController {
     }
 
     /**
-     *
+     * Define state of tile, also used by current user selection
      */
     public enum Tile {
         EMPTY, O, X
     }
 
     /**
-     *
+     * Define the state of the current game
      */
     public enum State {
         CIRCLE, CROSS, END_DRAW, END_CIRCLE, END_CROSS

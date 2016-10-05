@@ -2,9 +2,6 @@ package TicTacToe.GameControler;
 
 import java.util.Random;
 
-/**
- * Created by DucoSebel on 03-10-16.
- */
 public class SinglePlayerController extends GameController {
 
 
@@ -25,17 +22,15 @@ public class SinglePlayerController extends GameController {
 
     private void moveByAI() {
 
-        System.out.println("AI");
         Random rand = new Random();
 
-        int x;
-        int y;
+        int x, y;
 
         do {
             x = rand.nextInt(3);
             y = rand.nextInt(3);
         } while (!this.isEmptyTile(x, y));
-        
+
         super.move(x, y);
     }
 }
