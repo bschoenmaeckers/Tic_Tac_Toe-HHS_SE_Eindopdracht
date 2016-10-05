@@ -35,8 +35,7 @@ public class SinglePlayerController extends GameController {
             x = rand.nextInt(3);
             y = rand.nextInt(3);
         } while (!this.isEmptyTile(x, y));
-
-
+        
         super.move(x, y);
     }
 }
