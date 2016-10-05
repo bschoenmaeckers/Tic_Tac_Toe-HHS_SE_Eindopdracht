@@ -4,9 +4,9 @@ import TicTacToe.GameControler.GameController;
 import TicTacToe.GameControler.SinglePlayerController;
 import TicTacToe.Main;
 
+import javax.swing.*;
+
 public class SinglePlayerScreen extends OfflineGameScreen {
-
-
 
     public SinglePlayerScreen() {
         super();
@@ -15,11 +15,20 @@ public class SinglePlayerScreen extends OfflineGameScreen {
     }
 
     @Override
-    public void doMove(int x, int y) {
-        System.out.println("Click! x = " + x + " y = " + y);
+    public void gameOver(GameController game) {
+        updateScreen(game);
 
-        if (Main.game.move(x, y)) {
-            this.updateScreen(Main.game);
+        switch (game.getCurrentState()) {
+            case END_DRAW:
+                JOptionPane.showMessageDialog(this, "Draw!");
+                break;
+            case END_CIRCLE:
+                JOptionPane.showMessageDialog(this, "You won!");
+                break;
+            case END_CROSS:
+                JOptionPane.showMessageDialog(this, "You lost!");
+                break;
         }
+        stopGame();
     }
 }

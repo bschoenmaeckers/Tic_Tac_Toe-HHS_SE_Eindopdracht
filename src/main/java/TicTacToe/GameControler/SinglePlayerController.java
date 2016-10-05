@@ -16,10 +16,12 @@ public class SinglePlayerController extends GameController {
     public boolean move(int positionX, int positionY) {
         boolean result = super.move(positionX, positionY);
 
-        moveByAI();
+        if (result && !isGameOver())
+            moveByAI();
 
         return result;
     }
+
 
     private void moveByAI() {
 

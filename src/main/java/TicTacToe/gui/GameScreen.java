@@ -31,6 +31,8 @@ public abstract class GameScreen extends JFrame {
 
     public GameScreen() {
         setContentPane(panel1);
+        setTitle("Tic Tac Toe");
+        setResizable(false);
         pack();
 
         setLocationRelativeTo(null);
@@ -39,9 +41,6 @@ public abstract class GameScreen extends JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 stopGame();
-                dispose();
-                Main.gameScreen = null;
-                Main.menu = new MainMenu();
             }
         });
 
@@ -64,12 +63,14 @@ public abstract class GameScreen extends JFrame {
 
     public abstract void doMove(int x, int y);
 
+    public abstract void gameOver(GameController game);
+
     public void updateScreen(GameController game) {
         int y = 0;
-        for(JButton[] row: buttons){
+        for (JButton[] row : buttons) {
             int x = 0;
-            for(JButton button : row){
-                if(game.getField()[x][y] != GameController.Tile.EMPTY)
+            for (JButton button : row) {
+                if (game.getField()[x][y] != GameController.Tile.EMPTY)
                     button.setText(game.getField()[x][y].name());
                 x++;
             }
@@ -77,5 +78,9 @@ public abstract class GameScreen extends JFrame {
         }
     }
 
-    public abstract void stopGame();
+    public void stopGame() {
+        dispose();
+        Main.gameScreen = null;
+        Main.menu = new MainMenu();
+    }
 }
