@@ -13,21 +13,13 @@ public abstract class GameScreen extends JFrame {
 
     JLabel currentTurn;
     private JPanel panel1;
-    private JButton A1;
-    private JButton C1;
-    private JButton B1;
-    private JButton B2;
-    private JButton C2;
-    private JButton A2;
-    private JButton C3;
-    private JButton B3;
-    private JButton A3;
-    private JButton[][] buttons = //y,x
-            {
-                    {A1, B1, C1},
-                    {A2, B2, C2},
-                    {A3, B3, C3}
-            };
+    private JButton A1, B1, C1, A2, B2, C2, A3, B3, C3;
+    private JButton[][] buttons = // y,x
+        {
+            {A1, B1, C1},
+            {A2, B2, C2},
+            {A3, B3, C3}
+        };
 
     public GameScreen() {
         setContentPane(panel1);

@@ -43,7 +43,7 @@
         </constraints>
         <properties>
           <font size="40"/>
-          <text value="HoofdMenu"/>
+          <text value="Hoofdmenu"/>
         </properties>
       </component>
       <vspacer id="3ab63">

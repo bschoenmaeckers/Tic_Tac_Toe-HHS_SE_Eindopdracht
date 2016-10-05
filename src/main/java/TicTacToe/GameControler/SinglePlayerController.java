@@ -1,7 +1,5 @@
 package TicTacToe.GameControler;
 
-import TicTacToe.Main;
-
 import java.util.Random;
 
 public class SinglePlayerController extends GameController {
@@ -21,8 +19,7 @@ public class SinglePlayerController extends GameController {
 
         return result;
     }
-
-
+    
     private void moveByAI() {
 
         Random rand = new Random();
