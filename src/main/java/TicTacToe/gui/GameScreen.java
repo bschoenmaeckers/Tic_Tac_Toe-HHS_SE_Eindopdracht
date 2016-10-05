@@ -15,11 +15,11 @@ public abstract class GameScreen extends JFrame {
     private JPanel panel1;
     private JButton A1, B1, C1, A2, B2, C2, A3, B3, C3;
     private JButton[][] buttons = // y,x
-        {
-            {A1, B1, C1},
-            {A2, B2, C2},
-            {A3, B3, C3}
-        };
+            {
+                    {A1, B1, C1},
+                    {A2, B2, C2},
+                    {A3, B3, C3}
+            };
 
     public GameScreen() {
         setContentPane(panel1);

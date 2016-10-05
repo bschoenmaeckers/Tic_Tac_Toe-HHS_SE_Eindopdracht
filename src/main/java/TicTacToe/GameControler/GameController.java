@@ -107,7 +107,7 @@ public class GameController {
 
         // Diagonal lines
         // TODO: Add variable gamesize
-        Tile typeLeft =  field[0][0];
+        Tile typeLeft = field[0][0];
         Tile typeRight = field[2][0];
         boolean tempWon = true;
         if ((typeLeft == Tile.EMPTY) && (typeRight == Tile.EMPTY)) {
@@ -141,6 +141,7 @@ public class GameController {
 
     /**
      * Returns of the game is finished
+     *
      * @return true when game is flagged as ended
      */
     public boolean isGameEnded() {

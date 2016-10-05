@@ -16,15 +16,13 @@ public class SinglePlayerController extends GameController {
     public boolean move(int positionX, int positionY) {
         boolean result = super.move(positionX, positionY);
 
-
         if (result && !isGameEnded())
-            SwingUtilities.invokeLater(this::moveByAI);
+            SwingUtilities.invokeLater(() -> SwingUtilities.invokeLater(this::moveByAI));
 
         return result;
     }
-    
-    private void moveByAI() {
 
+    private void moveByAI() {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {

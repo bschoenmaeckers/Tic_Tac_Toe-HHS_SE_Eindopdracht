@@ -18,7 +18,16 @@ public class SinglePlayerScreen extends OfflineGameScreen {
     @Override
     public void updateScreen(GameController game) {
         super.updateScreen(game);
-        currentTurn.setText("Your turn");
+        if (game.getCurrentState() == GameController.State.CROSS)
+            currentTurn.setText("Computer");
+        else if (game.getCurrentState() == GameController.State.CIRCLE)
+            currentTurn.setText("Your turn");
+    }
+
+    @Override
+    public void doMove(int x, int y) {
+        if (Main.game.getCurrentState() == GameController.State.CIRCLE)
+            super.doMove(x, y);
     }
 
     @Override
