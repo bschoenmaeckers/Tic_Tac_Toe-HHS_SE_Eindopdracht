@@ -2,9 +2,6 @@ package TicTacToe.GameControler;
 
 import java.util.Random;
 
-/**
- * Created by DucoSebel on 03-10-16.
- */
 public class SinglePlayerController extends GameController {
 
 

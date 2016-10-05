@@ -20,6 +20,9 @@ repositories {
 dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.intellij:forms_rt:7.0.3'
+    compile 'org.glassfish.tyrus.bundles:tyrus-standalone-client-jdk:1.13'
+    compile 'org.glassfish.tyrus:tyrus-server:1.13'
+    compile 'org.glassfish.tyrus:tyrus-container-grizzly-server:1.7'
 }
 
 jar {
