@@ -21,6 +21,7 @@ public abstract class GameScreen extends JFrame {
     private JButton C3;
     private JButton B3;
     private JButton A3;
+    JLabel currentTurn;
 
     private JButton[][] buttons = //y,x
             {
@@ -66,6 +67,9 @@ public abstract class GameScreen extends JFrame {
     public abstract void gameOver(GameController game);
 
     public void updateScreen(GameController game) {
+        if(!game.isGameOver())
+            currentTurn.setText(game.getCurrentState().name());
+
         int y = 0;
         for (JButton[] row : buttons) {
             int x = 0;

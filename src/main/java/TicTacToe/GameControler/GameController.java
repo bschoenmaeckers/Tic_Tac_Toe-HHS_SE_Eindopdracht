@@ -143,7 +143,7 @@ public class GameController {
         }
     }
 
-    boolean isGameOver() {
+    public boolean isGameOver() {
         return currentState == State.END_CIRCLE || currentState == State.END_CROSS || currentState == State.END_DRAW;
     }
 
