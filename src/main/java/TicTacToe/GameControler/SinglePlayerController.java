@@ -1,5 +1,8 @@
 package TicTacToe.GameControler;
 
+import TicTacToe.Main;
+
+import javax.swing.*;
 import java.util.Random;
 
 public class SinglePlayerController extends GameController {
@@ -15,12 +18,18 @@ public class SinglePlayerController extends GameController {
 
 
         if (result && !isGameEnded())
-            moveByAI();
+            SwingUtilities.invokeLater(this::moveByAI);
 
         return result;
     }
     
     private void moveByAI() {
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         Random rand = new Random();
 
@@ -32,5 +41,6 @@ public class SinglePlayerController extends GameController {
         } while (!this.isEmptyTile(x, y));
 
         super.move(x, y);
+        Main.gameScreen.updateScreen(this);
     }
 }
