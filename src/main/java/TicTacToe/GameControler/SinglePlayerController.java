@@ -1,5 +1,7 @@
 package TicTacToe.GameControler;
 
+import TicTacToe.Main;
+
 import java.util.Random;
 
 public class SinglePlayerController extends GameController {
@@ -13,7 +15,8 @@ public class SinglePlayerController extends GameController {
     public boolean move(int positionX, int positionY) {
         boolean result = super.move(positionX, positionY);
 
-        if (result && !isGameOver())
+
+        if (result && !isGameEnded())
             moveByAI();
 
         return result;

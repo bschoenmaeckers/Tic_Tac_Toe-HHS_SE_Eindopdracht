@@ -107,9 +107,18 @@ public class GameController {
 
         // Diagonal lines
         // TODO: Add variable gamesize
-        if (field[1][1] != Tile.EMPTY && ((field[1][1] == field[0][0] && field[1][1] == field[2][2]) ||
-                (field[1][1] == field[2][0] && field[1][1] == field[0][2]))) {
-            won = true;
+        Tile typeLeft =  field[0][0];
+        Tile typeRight = field[2][0];
+        boolean tempWon = true;
+        if ((typeLeft == Tile.EMPTY) && (typeRight == Tile.EMPTY)) {
+            tempWon = false;
+        } else {
+            for (int x = 0; x < size; x++) {
+                if ((typeLeft != field[x][x]) && (typeRight != field[(size - 1) - x][(size - 1) - x]))
+                    tempWon = false;
+            }
+            if (tempWon == true)
+                won = true;
         }
 
         if (won) {

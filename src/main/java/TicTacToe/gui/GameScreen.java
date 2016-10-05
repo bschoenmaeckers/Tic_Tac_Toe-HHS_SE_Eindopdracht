@@ -66,7 +66,7 @@ public abstract class GameScreen extends JFrame {
     public abstract void gameOver(GameController game);
 
     public void updateScreen(GameController game) {
-        if (!game.isGameOver())
+        if (!game.isGameEnded())
             currentTurn.setText(game.getCurrentState().name());
 
         int y = 0;
