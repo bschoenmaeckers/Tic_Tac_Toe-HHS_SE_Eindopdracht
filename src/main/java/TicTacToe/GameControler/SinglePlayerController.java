@@ -17,6 +17,7 @@ public class SinglePlayerController extends GameController {
         boolean result = super.move(positionX, positionY);
 
         if (result && !isGameEnded())
+            //Update Screen and do AI move.
             SwingUtilities.invokeLater(() -> SwingUtilities.invokeLater(this::moveByAI));
 
         return result;
@@ -24,7 +25,7 @@ public class SinglePlayerController extends GameController {
 
     private void moveByAI() {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(700);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -39,6 +40,9 @@ public class SinglePlayerController extends GameController {
         } while (!this.isEmptyTile(x, y));
 
         super.move(x, y);
-        Main.gameScreen.updateScreen(this);
+
+        //Check if game screen is still open.
+        if (Main.gameScreen != null)
+            Main.gameScreen.updateScreen(this);
     }
 }
