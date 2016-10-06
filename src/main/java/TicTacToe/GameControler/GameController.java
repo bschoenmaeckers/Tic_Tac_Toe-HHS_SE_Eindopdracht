@@ -31,7 +31,6 @@ public class GameController {
      */
     public boolean isEmptyTile(int positionX, int positionY) {
         return field[positionX][positionY] == Tile.EMPTY;
-
     }
 
     /**
@@ -106,7 +105,6 @@ public class GameController {
         }
 
         // Diagonal lines
-        // TODO: Add variable gamesize
         Tile typeLeft = field[0][0];
         Tile typeRight = field[2][0];
         boolean tempWon = true;
@@ -179,6 +177,7 @@ public class GameController {
             }
             System.out.println();
         }
+        System.out.println();
     }
 
     /**

@@ -6,6 +6,10 @@ import TicTacToe.Main;
 import javax.swing.*;
 
 public class LocalMultiplayerScreen extends OfflineGameScreen {
+
+    /**
+     * Loads local multi player controller and start the game with Circle player
+     */
     public LocalMultiplayerScreen() {
         super();
 
@@ -13,6 +17,10 @@ public class LocalMultiplayerScreen extends OfflineGameScreen {
         currentTurn.setText("CIRCLE");
     }
 
+    /**
+     * Display the winning player and ends game
+     * @param game current gamecontroller
+     */
     @Override
     public void gameOver(GameController game) {
         updateScreen(game);
@@ -28,6 +36,7 @@ public class LocalMultiplayerScreen extends OfflineGameScreen {
                 JOptionPane.showMessageDialog(this, "Cross won!");
                 break;
         }
+
         stopGame();
     }
 }

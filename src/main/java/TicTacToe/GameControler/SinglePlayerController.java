@@ -12,6 +12,12 @@ public class SinglePlayerController extends GameController {
         super(startingTurn);
     }
 
+    /**
+     *  Do move by user and start moveByAI
+     * @param positionX horizontal position
+     * @param positionY vertical position
+     * @return
+     */
     @Override
     public boolean move(int positionX, int positionY) {
         boolean result = super.move(positionX, positionY);
@@ -23,6 +29,9 @@ public class SinglePlayerController extends GameController {
         return result;
     }
 
+    /**
+     * Wait 700ms and do a random move
+     */
     private void moveByAI() {
         try {
             Thread.sleep(700);

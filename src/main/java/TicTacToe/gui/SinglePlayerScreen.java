@@ -15,6 +15,10 @@ public class SinglePlayerScreen extends OfflineGameScreen {
         currentTurn.setText("Your turn");
     }
 
+    /**
+     * Update screen with current state and shows whos turn it is
+     * @param game Current GameController
+     */
     @Override
     public void updateScreen(GameController game) {
         super.updateScreen(game);
@@ -24,12 +28,21 @@ public class SinglePlayerScreen extends OfflineGameScreen {
             currentTurn.setText("Your turn");
     }
 
+    /**
+     * Do the move when it is your turn
+     * @param x Horizontal position
+     * @param y Vertical position
+     */
     @Override
     public void doMove(int x, int y) {
         if (Main.game.getCurrentState() == GameController.State.CIRCLE)
             super.doMove(x, y);
     }
 
+    /**
+     * Show final state and stop the game
+     * @param game Current GameController
+     */
     @Override
     public void gameOver(GameController game) {
         updateScreen(game);
