@@ -4,7 +4,7 @@ import javax.websocket.EncodeException;
 import javax.websocket.Encoder;
 import javax.websocket.EndpointConfig;
 
-public class DataEncoder implements Encoder.Text<MultiplayerMessage>{
+public class DataEncoder implements Encoder.Text<MultiplayerMessage> {
     @Override
     public String encode(MultiplayerMessage message) throws EncodeException {
         return message.asString();

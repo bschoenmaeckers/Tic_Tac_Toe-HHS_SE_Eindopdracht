@@ -1,29 +1,35 @@
 package TicTacToe.network;
 
+import TicTacToe.GameControler.GameController;
+
 import static TicTacToe.GameControler.GameController.Tile;
 
-public class UpdateBoardMessage extends MultiplayerMessage{
+public class UpdateBoardMessage extends MultiplayerMessage {
 
     public Tile[][] board = new Tile[3][3];
+    public GameController.State currentTurn;
 
     public UpdateBoardMessage() {
         super(UPDATE_BOARD_MESSAGE);
     }
 
-    public UpdateBoardMessage(Tile[][] board) {
+    public UpdateBoardMessage(Tile[][] board, GameController.State currentTurn) {
         super(UPDATE_BOARD_MESSAGE);
         this.board = board;
+        this.currentTurn = currentTurn;
     }
 
     @Override
     public String asString() {
         String data = UPDATE_BOARD_MESSAGE;
 
-        for(Tile[] row:board){
-            for (Tile tile:row){
-                data += tile.name()+" ";
+        for (Tile[] row : board) {
+            for (Tile tile : row) {
+                data += tile.name() + " ";
             }
         }
+
+        data += currentTurn.name();
 
         return data.trim();
     }
@@ -37,5 +43,6 @@ public class UpdateBoardMessage extends MultiplayerMessage{
                 board[i][j] = Tile.valueOf(data[x++]);
             }
         }
+        currentTurn = GameController.State.valueOf(data[x]);
     }
 }

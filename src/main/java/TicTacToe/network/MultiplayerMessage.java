@@ -17,7 +17,7 @@ public abstract class MultiplayerMessage {
 
         if (s.startsWith(MOVE_MESSAGE)) {
             message = new MoveMessage();
-        } else if (s.startsWith(UPDATE_BOARD_MESSAGE)){
+        } else if (s.startsWith(UPDATE_BOARD_MESSAGE)) {
             message = new UpdateBoardMessage();
         } else {
             throw new RuntimeException("Unknown message: " + s);

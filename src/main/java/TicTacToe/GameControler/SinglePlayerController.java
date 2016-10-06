@@ -1,5 +1,9 @@
 package TicTacToe.GameControler;
 
+import TicTacToe.Main;
+
+import javax.swing.*;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
 
 public class SinglePlayerController extends GameController {
@@ -12,6 +16,8 @@ public class SinglePlayerController extends GameController {
     @Override
     public boolean move(int positionX, int positionY) {
         boolean result = super.move(positionX, positionY);
+
+        Main.gameScreen.updateScreen(this);
 
         if (result && !isGameOver())
             moveByAI();
@@ -32,7 +38,7 @@ public class SinglePlayerController extends GameController {
             x = rand.nextInt(3);
             y = rand.nextInt(3);
         } while (!this.isEmptyTile(x, y));
-        
+
         super.move(x, y);
     }
 }

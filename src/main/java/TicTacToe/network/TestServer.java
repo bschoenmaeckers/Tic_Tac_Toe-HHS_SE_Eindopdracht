@@ -1,6 +1,5 @@
 package TicTacToe.network;
 
-import TicTacToe.network.chat.ChatEndpoint;
 import org.glassfish.tyrus.client.ClientManager;
 import org.glassfish.tyrus.server.Server;
 
@@ -20,7 +19,7 @@ public class TestServer {
             System.out.print("Please press a key to stop the server.");
             reader.readLine();
             System.out.println("Connecting to server");
-            client.connectToServer(PlayerEndpoint.class,new URI("ws://localhost:8080/host"));
+            client.connectToServer(PlayerEndpoint.class, new URI("ws://localhost:8080/host"));
             reader.readLine();
         } catch (Exception e) {
             e.printStackTrace();

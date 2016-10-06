@@ -1,21 +1,28 @@
 package TicTacToe.network;
 
-import javax.websocket.*;
-import java.util.logging.Logger;
+import TicTacToe.GameControler.GameController;
+import TicTacToe.GameControler.MultiplayerClientController;
+import TicTacToe.Main;
 
-@ClientEndpoint(encoders = {DataEncoder.class},decoders = {DataDecoder.class})
-public class PlayerEndpoint{
-    Logger logger = Logger.getLogger("Client");
+import javax.websocket.*;
+import java.io.IOException;
+
+@ClientEndpoint(encoders = {DataEncoder.class}, decoders = {DataDecoder.class})
+public class PlayerEndpoint {
 
     @OnMessage
-    public void handleMessage(MultiplayerMessage message, Session session){
-        logger.info("message: " + message.asString());
+    public void handleMessage(MultiplayerMessage message, Session session) {
+        switch (message.getType()){
+            case MultiplayerMessage.UPDATE_BOARD_MESSAGE:
+                ((MultiplayerClientController) Main.game).updateBoard(((UpdateBoardMessage) message));
+                break;
+        }
     }
 
-//    @OnClose
-//    public void onClose(){
-//
-//    }
+    @OnClose
+    public void onClose(CloseReason reason){
+        System.out.println(reason.getReasonPhrase());
+    }
 //
 //    @OnError
 //    public void onError(){

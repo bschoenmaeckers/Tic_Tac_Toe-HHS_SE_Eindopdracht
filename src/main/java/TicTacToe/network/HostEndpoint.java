@@ -1,36 +1,33 @@
 package TicTacToe.network;
 
-import TicTacToe.GameControler.GameController;
-
-import java.io.IOException;
+import TicTacToe.GameControler.MultiplayerHostController;
+import TicTacToe.Main;
 
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
-@ServerEndpoint(value = "/host",decoders = {DataDecoder.class}, encoders = {DataEncoder.class})
+@ServerEndpoint(value = "/game", decoders = {DataDecoder.class}, encoders = {DataEncoder.class})
 public class HostEndpoint {
 
     @OnOpen
     public void onOpen(Session session) throws IOException, EncodeException {
-        System.out.println("Player connecting...");
-        GameController.Tile[][] board = {{GameController.Tile.EMPTY,GameController.Tile.EMPTY,GameController.Tile.EMPTY},
-                {GameController.Tile.EMPTY,GameController.Tile.O,GameController.Tile.O},
-                {GameController.Tile.EMPTY,GameController.Tile.EMPTY,GameController.Tile.X}};
-        MultiplayerMessage message = new UpdateBoardMessage(board);
+        System.out.println("Player connecting!");
 
-        session.getBasicRemote().sendObject(message);
+        if(!((MultiplayerHostController) Main.game).playerConnected(session))
+            session.close(new CloseReason(CloseReason.CloseCodes.CANNOT_ACCEPT, "Player already connected!"));
     }
 
     @OnClose
-    public void onClose(){
+    public void onClose() {
         System.out.println("Player disconnected!");
         //Stop game
     }
 
     @OnMessage
-    public void handleMessage(MultiplayerMessage message , Session session) throws IOException {
+    public void handleMessage(MultiplayerMessage message, Session session) {
         if (message.getType().equals(MultiplayerMessage.MOVE_MESSAGE))
-            System.out.println("got move.");
+            ((MultiplayerHostController) Main.game).move(((MoveMessage) message));
     }
 
     @OnError

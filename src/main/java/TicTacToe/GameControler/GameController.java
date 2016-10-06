@@ -7,10 +7,10 @@ public class GameController {
     /**
      * field[horizontal][vertical]
      */
-    private Tile[][] field;
+    protected Tile[][] field;
     private int size = 3;
-    private int moves = 0;
-    private State currentState;
+    protected int moves = 0;
+    protected State currentState;
 
     public GameController(Tile startingTurn) {
 
@@ -83,7 +83,7 @@ public class GameController {
     /**
      *
      */
-    private void checkCurrentState() {
+    protected void checkCurrentState() {
         boolean won = false;
 
         //Horizontal lines
