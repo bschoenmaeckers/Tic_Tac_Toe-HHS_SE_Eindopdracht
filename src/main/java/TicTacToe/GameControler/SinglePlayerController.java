@@ -13,26 +13,37 @@ public class SinglePlayerController extends GameController {
         super(startingTurn);
     }
 
+    /**
+     *  Do move by user and start moveByAI
+     * @param positionX horizontal position
+     * @param positionY vertical position
+     * @return
+     */
     @Override
     public boolean move(int positionX, int positionY) {
         boolean result = super.move(positionX, positionY);
 
         Main.gameScreen.updateScreen(this);
-
-        if (result && !isGameOver())
-            moveByAI();
+        if (result && !isGameEnded())
+            //Update Screen and do AI move.
+            SwingUtilities.invokeLater(() -> SwingUtilities.invokeLater(this::moveByAI));
 
         return result;
     }
 
-
+    /**
+     * Wait 700ms and do a random move
+     */
     private void moveByAI() {
+        try {
+            Thread.sleep(700);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-        System.out.println("AI");
         Random rand = new Random();
 
-        int x;
-        int y;
+        int x, y;
 
         do {
             x = rand.nextInt(3);
@@ -40,5 +51,9 @@ public class SinglePlayerController extends GameController {
         } while (!this.isEmptyTile(x, y));
 
         super.move(x, y);
+
+        //Check if game screen is still open.
+        if (Main.gameScreen != null)
+            Main.gameScreen.updateScreen(this);
     }
 }

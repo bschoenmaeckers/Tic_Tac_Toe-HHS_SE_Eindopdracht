@@ -12,10 +12,6 @@ public class MainMenu extends JFrame {
     private JButton singlePlayerButton;
     private JPanel panel1;
     private JButton localMultiplayerButton;
-    private JButton hostGameButton;
-    private JButton joinGameButton;
-    private JButton scoresButton;
-    private JButton optionsButton;
 
     public MainMenu() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -27,6 +23,9 @@ public class MainMenu extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
 
+        /*
+          Start SinglePlayerScreen when button is pressed
+         */
         singlePlayerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -35,6 +34,9 @@ public class MainMenu extends JFrame {
             }
         });
 
+        /*
+          Start LocalMultiPlayerScreen when button is pressed
+         */
         localMultiplayerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

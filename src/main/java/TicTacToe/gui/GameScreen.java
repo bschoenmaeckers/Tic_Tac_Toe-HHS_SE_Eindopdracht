@@ -13,22 +13,17 @@ public abstract class GameScreen extends JFrame {
 
     JLabel currentTurn;
     private JPanel panel1;
-    private JButton A1;
-    private JButton C1;
-    private JButton B1;
-    private JButton B2;
-    private JButton C2;
-    private JButton A2;
-    private JButton C3;
-    private JButton B3;
-    private JButton A3;
-    private JButton[][] buttons = //y,x
+    private JButton A1, B1, C1, A2, B2, C2, A3, B3, C3;
+    private JButton[][] buttons = // y,x
             {
                     {A1, B1, C1},
                     {A2, B2, C2},
                     {A3, B3, C3}
             };
 
+    /**
+     * Load new gamescreen and loads the buttons
+     */
     public GameScreen() {
         setContentPane(panel1);
         setTitle("Tic Tac Toe");
@@ -44,11 +39,11 @@ public abstract class GameScreen extends JFrame {
             }
         });
 
-        for (int i = 0; i < buttons.length; i++) { //Rows
+        for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons[i].length; j++) {
                 final int x = j;
                 final int y = i;
-                buttons[y][x].addActionListener(e -> doMove(x,y));
+                buttons[y][x].addActionListener(e -> doMove(x, y));
             }
         }
 
@@ -56,16 +51,29 @@ public abstract class GameScreen extends JFrame {
 
     }
 
+    /**
+     * Move current action and visualize it to the board
+     * @param x Horizontal position
+     * @param y Vertical position
+     */
     public void doMove(int x, int y){
         if (Main.game.move(x, y)) {
             this.updateScreen(Main.game);
         }
     }
 
+    /**
+     * Stop current game
+     * @param game Current GameController
+     */
     public abstract void gameOver(GameController game);
 
+    /**
+     * Update gameboard with current field
+     * @param game Current GameController
+     */
     public void updateScreen(GameController game) {
-        if (!game.isGameOver())
+        if (!game.isGameEnded())
             currentTurn.setText(game.getCurrentState().name());
 
         int y = 0;
@@ -80,6 +88,10 @@ public abstract class GameScreen extends JFrame {
         }
     }
 
+    /**
+     * Stop current game and remove it from memory
+     * Reopens the main menu
+     */
     public void stopGame() {
         dispose();
         Main.gameScreen = null;
