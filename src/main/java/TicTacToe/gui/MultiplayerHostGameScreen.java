@@ -4,9 +4,10 @@ import TicTacToe.GameControler.GameController;
 import TicTacToe.GameControler.MultiplayerHostController;
 import TicTacToe.Main;
 
+import javax.swing.*;
 import javax.websocket.DeploymentException;
 
-public class MultiplayerHostGameScreen extends OnlineGameScreen {
+public class MultiplayerHostGameScreen extends GameScreen {
 
     public MultiplayerHostGameScreen() throws DeploymentException {
         super();
@@ -16,7 +17,21 @@ public class MultiplayerHostGameScreen extends OnlineGameScreen {
 
     @Override
     public void gameOver(GameController game) {
+        updateScreen(game);
+        ((MultiplayerHostController) Main.game).updateClient();
 
+        switch (game.getCurrentState()) {
+            case END_DRAW:
+                JOptionPane.showMessageDialog(this, "Draw!");
+                break;
+            case END_CIRCLE:
+                JOptionPane.showMessageDialog(this, "You won!");
+                break;
+            case END_CROSS:
+                JOptionPane.showMessageDialog(this, "You lost!");
+                break;
+        }
+        stopGame();
     }
 
     @Override
@@ -37,7 +52,7 @@ public class MultiplayerHostGameScreen extends OnlineGameScreen {
 
     @Override
     public void stopGame() {
-        ((MultiplayerHostController) Main.game).getServer().stop();
+        ((MultiplayerHostController) Main.game).stopGame();
         super.stopGame();
     }
 }

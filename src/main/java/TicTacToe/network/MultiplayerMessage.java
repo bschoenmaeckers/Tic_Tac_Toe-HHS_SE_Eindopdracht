@@ -2,7 +2,7 @@ package TicTacToe.network;
 
 public abstract class MultiplayerMessage {
 
-    public static final String MOVE_MESSAGE = "move";
+    public static final String MOVE_MESSAGE = "mve";
     public static final String UPDATE_BOARD_MESSAGE = "upd";
 
     String type;

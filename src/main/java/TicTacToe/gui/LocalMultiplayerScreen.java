@@ -5,7 +5,7 @@ import TicTacToe.Main;
 
 import javax.swing.*;
 
-public class LocalMultiplayerScreen extends OfflineGameScreen {
+public class LocalMultiplayerScreen extends GameScreen {
     public LocalMultiplayerScreen() {
         super();
 

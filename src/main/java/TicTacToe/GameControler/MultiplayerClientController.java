@@ -53,10 +53,21 @@ public class MultiplayerClientController extends GameController {
         this.field = message.board;
         this.currentState = message.currentTurn;
         Main.gameScreen.updateScreen(this);
+        checkCurrentState();
     }
 
     @Override
     protected void checkCurrentState() {
         //Do Nothing
+        if (currentState == State.END_CROSS || currentState == State.END_CIRCLE || currentState == State.END_DRAW)
+            Main.gameScreen.gameOver(this);
+    }
+
+    public void closeConnection(){
+        try {
+            connection.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

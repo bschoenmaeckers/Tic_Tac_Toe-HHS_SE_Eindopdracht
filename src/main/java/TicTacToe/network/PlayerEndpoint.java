@@ -4,6 +4,7 @@ import TicTacToe.GameControler.GameController;
 import TicTacToe.GameControler.MultiplayerClientController;
 import TicTacToe.Main;
 
+import javax.swing.*;
 import javax.websocket.*;
 import java.io.IOException;
 
@@ -21,11 +22,9 @@ public class PlayerEndpoint {
 
     @OnClose
     public void onClose(CloseReason reason){
-        System.out.println(reason.getReasonPhrase());
+        if (reason.getCloseCode() == CloseReason.CloseCodes.CLOSED_ABNORMALLY){
+            JOptionPane.showMessageDialog(Main.gameScreen,"The connection to the server has been lost.","Connection lost!",JOptionPane.WARNING_MESSAGE);
+            Main.gameScreen.stopGame();
+        }
     }
-//
-//    @OnError
-//    public void onError(){
-//
-//    }
 }

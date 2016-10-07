@@ -24,11 +24,7 @@ public class MultiplayerHostController extends GameController {
 
         if (connection == null) {
             connection = newConnection;
-            try {
-                connection.getBasicRemote().sendObject(new UpdateBoardMessage(field,State.CIRCLE));
-            } catch (IOException|EncodeException e) {
-                //TODO
-            }
+            updateClient();
             Main.gameScreen.updateScreen(this);
             return true;
         } else
@@ -57,17 +53,32 @@ public class MultiplayerHostController extends GameController {
             moves++;
             checkCurrentState();
             printCurrentState();
+
+            if (Main.gameScreen == null)
+                return false;
+
             Main.gameScreen.updateScreen(this);
 
-            try {
-                connection.getBasicRemote().sendObject(new UpdateBoardMessage(field,currentState));
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (EncodeException e) {
-                e.printStackTrace();
-            }
+            updateClient();
 
             return true;
         }
+    }
+
+    public void updateClient(){
+        try {
+            connection.getBasicRemote().sendObject(new UpdateBoardMessage(field,currentState));
+        } catch (IOException | EncodeException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void stopGame(){
+        try {
+            connection.close();
+        } catch (IOException|NullPointerException ignored){
+
+        }
+        server.stop();
     }
 }
