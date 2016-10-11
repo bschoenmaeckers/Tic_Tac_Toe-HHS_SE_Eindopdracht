@@ -36,7 +36,7 @@ public class MultiplayerHostGameScreen extends GameScreen {
 
     @Override
     public void doMove(int x, int y) {
-        if(Main.game.getCurrentState() == GameController.State.CIRCLE)
+        if (Main.game.getCurrentState() == GameController.State.CIRCLE)
             super.doMove(x, y);
     }
 

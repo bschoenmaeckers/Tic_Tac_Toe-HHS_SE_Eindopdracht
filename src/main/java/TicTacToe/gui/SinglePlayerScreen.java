@@ -17,6 +17,7 @@ public class SinglePlayerScreen extends GameScreen {
 
     /**
      * Update screen with current state and shows whos turn it is
+     *
      * @param game Current GameController
      */
     @Override
@@ -30,6 +31,7 @@ public class SinglePlayerScreen extends GameScreen {
 
     /**
      * Do the move when it is your turn
+     *
      * @param x Horizontal position
      * @param y Vertical position
      */
@@ -41,6 +43,7 @@ public class SinglePlayerScreen extends GameScreen {
 
     /**
      * Show final state and stop the game
+     *
      * @param game Current GameController
      */
     @Override

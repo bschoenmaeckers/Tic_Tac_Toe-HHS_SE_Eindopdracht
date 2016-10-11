@@ -13,17 +13,17 @@ public class MoveMessage extends MultiplayerMessage {
         super(MOVE_MESSAGE);
     }
 
-    public MoveMessage( GameController.Tile tile, int x, int y) {
+    public MoveMessage(GameController.Tile tile, int x, int y) {
         super(MOVE_MESSAGE);
         this.tile = tile;
-        this.location = new Point(x,y);
+        this.location = new Point(x, y);
     }
 
-    public int getX(){
+    public int getX() {
         return location.x;
     }
 
-    public int getY(){
+    public int getY() {
         return location.y;
     }
 

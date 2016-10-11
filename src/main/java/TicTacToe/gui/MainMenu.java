@@ -12,6 +12,8 @@ public class MainMenu extends JFrame {
     private JButton singlePlayerButton;
     private JPanel panel1;
     private JButton localMultiplayerButton;
+    private JButton hostGameButton;
+    private JButton joinGameButton;
 
     public MainMenu() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -52,7 +54,7 @@ public class MainMenu extends JFrame {
                     Main.gameScreen = new MultiplayerHostGameScreen();
                     MainMenu.this.dispose();
                 } catch (DeploymentException e1) {
-                    JOptionPane.showMessageDialog(MainMenu.this,"Error starting server!","Error",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(MainMenu.this, "Error starting server!", "Error", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });

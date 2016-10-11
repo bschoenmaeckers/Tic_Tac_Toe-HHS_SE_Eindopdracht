@@ -13,12 +13,13 @@ public class MultiplayerClientGameScreen extends GameScreen {
     public MultiplayerClientGameScreen() throws IOException, DeploymentException {
         super();
 
-        Main.game = new MultiplayerClientController(GameController.Tile.O);
+        Main.game = new MultiplayerClientController(this, GameController.Tile.O);
     }
 
     @Override
     public void stopGame() {
-        ((MultiplayerClientController) Main.game).closeConnection();
+        if (Main.game != null)
+            ((MultiplayerClientController) Main.game).closeConnection();
         super.stopGame();
     }
 

@@ -7,7 +7,6 @@ import javax.swing.*;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.security.cert.CertPathValidatorException;
 
 @ServerEndpoint(value = "/game", decoders = {DataDecoder.class}, encoders = {DataEncoder.class})
 public class HostEndpoint {
@@ -16,15 +15,15 @@ public class HostEndpoint {
     public void onOpen(Session session) throws IOException, EncodeException {
         System.out.println("Player connecting!");
 
-        if(!((MultiplayerHostController) Main.game).playerConnected(session))
+        if (!((MultiplayerHostController) Main.game).playerConnected(session))
             session.close(new CloseReason(CloseReason.CloseCodes.CANNOT_ACCEPT, "Player already connected!"));
     }
 
     @OnClose
-    public void onClose(CloseReason reason) {
-       if (reason.getCloseCode() == CloseReason.CloseCodes.CLOSED_ABNORMALLY){
+    public void onClose(CloseReason reason, Session session) {
+        if (reason.getCloseCode() != CloseReason.CloseCodes.NORMAL_CLOSURE && !Main.game.isGameEnded()) {
             System.out.println("Player disconnected!");
-            JOptionPane.showMessageDialog(Main.gameScreen, "The connection to the client has been lost.", "Connection lost!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(Main.gameScreen, "The connection to the client has been lost. \n Reason: " + reason.getReasonPhrase(), "Connection lost!", JOptionPane.WARNING_MESSAGE);
             Main.gameScreen.stopGame();
         }
     }

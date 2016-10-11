@@ -19,6 +19,7 @@ public class LocalMultiplayerScreen extends GameScreen {
 
     /**
      * Display the winning player and ends game
+     *
      * @param game current gamecontroller
      */
     @Override

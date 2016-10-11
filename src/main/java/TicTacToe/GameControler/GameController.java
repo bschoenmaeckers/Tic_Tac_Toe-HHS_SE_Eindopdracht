@@ -8,9 +8,9 @@ public class GameController {
      * field[horizontal][vertical]
      */
     protected Tile[][] field;
-    private int size = 3;
     protected int moves = 0;
     protected State currentState;
+    private int size = 3;
 
     public GameController(Tile startingTurn) {
 

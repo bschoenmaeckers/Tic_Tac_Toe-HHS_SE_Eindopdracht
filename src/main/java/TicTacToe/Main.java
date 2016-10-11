@@ -13,6 +13,7 @@ public class Main {
     /**
      * Start application an display MainMenu where the user
      * can choose between Single or Multi player
+     *
      * @param args
      */
     public static void main(String[] args) {

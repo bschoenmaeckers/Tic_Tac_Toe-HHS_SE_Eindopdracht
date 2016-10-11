@@ -2,12 +2,14 @@ package TicTacToe.GameControler;
 
 
 import TicTacToe.Main;
+import TicTacToe.gui.MultiplayerClientGameScreen;
 import TicTacToe.network.MoveMessage;
 import TicTacToe.network.PlayerEndpoint;
 import TicTacToe.network.UpdateBoardMessage;
 import org.glassfish.tyrus.client.ClientManager;
 
 import javax.swing.*;
+import javax.websocket.CloseReason;
 import javax.websocket.DeploymentException;
 import javax.websocket.EncodeException;
 import javax.websocket.Session;
@@ -16,33 +18,43 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class MultiplayerClientController extends GameController {
-    ClientManager client = ClientManager.createClient();
-    Session connection;
+    private Session connection;
+    private boolean leavingGame = false;
 
-    public MultiplayerClientController(Tile startingTurn) {
+    public MultiplayerClientController(MultiplayerClientGameScreen gameScreen, Tile startingTurn) {
         super(startingTurn);
 
         do {
             try {
-                connection = client.connectToServer(PlayerEndpoint.class, new URI("ws://" + JOptionPane.showInputDialog("Connect to server. \n\n Server ip:") + ":8025/game"));
-            } catch (URISyntaxException | NullPointerException | DeploymentException e) {
+                ClientManager client = ClientManager.createClient();
+                String address = JOptionPane.showInputDialog(Main.gameScreen, "Connect to server. \n\n Server ip:");
+
+                if (address == null) {
+                    gameScreen.stopGame();
+                    return;
+                }
+
+                connection = client.connectToServer(PlayerEndpoint.class, new URI("ws://" + address + ":8025/game"));
+            } catch (URISyntaxException e) {
                 JOptionPane.showMessageDialog(Main.gameScreen, "This is not a valid address!");
-            } catch (IOException e) {
+                connection = null;
+            } catch (IOException | DeploymentException e) {
                 JOptionPane.showMessageDialog(Main.gameScreen, "Could not connect to server!");
+                connection = null;
             }
-        } while (!connection.isOpen());
+        } while (connection == null || !connection.isOpen());
     }
 
     @Override
     public boolean move(int positionX, int positionY) {
         Tile tile = field[positionX][positionY];
 
-        if (tile != Tile.EMPTY || isGameOver()) {
+        if (tile != Tile.EMPTY || isGameEnded()) {
             return false;
         } else {
             try {
-                connection.getBasicRemote().sendObject(new MoveMessage(Tile.X,positionX,positionY));
-            } catch (IOException|EncodeException e) {
+                connection.getBasicRemote().sendObject(new MoveMessage(Tile.X, positionX, positionY));
+            } catch (IOException | EncodeException e) {
                 //TODO stop game
             }
             return true;
@@ -63,9 +75,24 @@ public class MultiplayerClientController extends GameController {
             Main.gameScreen.gameOver(this);
     }
 
-    public void closeConnection(){
+    @Override
+    public boolean isGameEnded() {
+        return super.isGameEnded() || leavingGame;
+    }
+
+    public void closeConnection() {
+        if (connection == null)
+            return;
+
         try {
-            connection.close();
+            if (connection.isOpen()) {
+                if (isGameEnded())
+                    connection.close();
+                else {
+                    leavingGame = true;
+                    connection.close(new CloseReason(CloseReason.CloseCodes.GOING_AWAY, "Client left the game!"));
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

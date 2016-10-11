@@ -4,8 +4,6 @@ import TicTacToe.GameControler.GameController;
 import TicTacToe.Main;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -53,10 +51,11 @@ public abstract class GameScreen extends JFrame {
 
     /**
      * Move current action and visualize it to the board
+     *
      * @param x Horizontal position
      * @param y Vertical position
      */
-    public void doMove(int x, int y){
+    public void doMove(int x, int y) {
         if (Main.game.move(x, y)) {
             this.updateScreen(Main.game);
         }
@@ -64,12 +63,14 @@ public abstract class GameScreen extends JFrame {
 
     /**
      * Stop current game
+     *
      * @param game Current GameController
      */
     public abstract void gameOver(GameController game);
 
     /**
      * Update gameboard with current field
+     *
      * @param game Current GameController
      */
     public void updateScreen(GameController game) {
