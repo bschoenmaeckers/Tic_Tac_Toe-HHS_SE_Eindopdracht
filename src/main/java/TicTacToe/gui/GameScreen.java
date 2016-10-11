@@ -96,6 +96,7 @@ public abstract class GameScreen extends JFrame {
     public void stopGame() {
         dispose();
         Main.gameScreen = null;
+        Main.game = null;
         Main.menu = new MainMenu();
     }
 }
