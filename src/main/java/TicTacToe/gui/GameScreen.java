@@ -12,12 +12,7 @@ public abstract class GameScreen extends JFrame {
     JLabel currentTurn;
     private JPanel panel1;
     private JButton A1, B1, C1, A2, B2, C2, A3, B3, C3;
-    private JButton[][] buttons = // y,x
-            {
-                    {A1, B1, C1},
-                    {A2, B2, C2},
-                    {A3, B3, C3}
-            };
+    private JButton[][] buttons;// y,x
 
     /**
      * Load new gamescreen and loads the buttons
@@ -36,6 +31,12 @@ public abstract class GameScreen extends JFrame {
                 stopGame();
             }
         });
+
+        buttons = new JButton[][]{
+                {A1, B1, C1},
+                {A2, B2, C2},
+                {A3, B3, C3}
+        };
 
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons[i].length; j++) {
@@ -99,4 +100,5 @@ public abstract class GameScreen extends JFrame {
         Main.game = null;
         Main.menu = new MainMenu();
     }
+
 }
