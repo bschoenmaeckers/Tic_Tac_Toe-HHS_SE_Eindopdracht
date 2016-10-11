@@ -17,10 +17,12 @@ public class HostEndpoint {
 
         if (!((MultiplayerHostController) Main.game).playerConnected(session))
             session.close(new CloseReason(CloseReason.CloseCodes.CANNOT_ACCEPT, "Player already connected!"));
+
+        System.out.println("Player connected!");
     }
 
     @OnClose
-    public void onClose(CloseReason reason, Session session) {
+    public void onClose(CloseReason reason) {
         if (reason.getCloseCode() != CloseReason.CloseCodes.NORMAL_CLOSURE && !Main.game.isGameEnded()) {
             System.out.println("Player disconnected!");
             JOptionPane.showMessageDialog(Main.gameScreen, "The connection to the client has been lost. \n Reason: " + reason.getReasonPhrase(), "Connection lost!", JOptionPane.WARNING_MESSAGE);
@@ -29,14 +31,8 @@ public class HostEndpoint {
     }
 
     @OnMessage
-    public void handleMessage(MultiplayerMessage message, Session session) {
+    public void handleMessage(MultiplayerMessage message) {
         if (message.getType().equals(MultiplayerMessage.MOVE_MESSAGE))
             ((MultiplayerHostController) Main.game).move(((MoveMessage) message));
     }
-
-    @OnError
-    public void onError(Throwable t) {
-        t.printStackTrace();
-    }
-
 }

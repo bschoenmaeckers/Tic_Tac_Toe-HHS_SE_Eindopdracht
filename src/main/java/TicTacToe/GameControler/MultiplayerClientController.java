@@ -30,6 +30,7 @@ public class MultiplayerClientController extends GameController {
                 String address = JOptionPane.showInputDialog(Main.gameScreen, "Connect to server. \n\n Server ip:");
 
                 if (address == null) {
+                    //cancel button hit. Returning to main menu
                     gameScreen.stopGame();
                     return;
                 }
@@ -55,7 +56,8 @@ public class MultiplayerClientController extends GameController {
             try {
                 connection.getBasicRemote().sendObject(new MoveMessage(Tile.X, positionX, positionY));
             } catch (IOException | EncodeException e) {
-                //TODO stop game
+                System.out.println("Error while handling player move:");
+                e.printStackTrace();
             }
             return true;
         }
@@ -70,7 +72,6 @@ public class MultiplayerClientController extends GameController {
 
     @Override
     protected void checkCurrentState() {
-        //Do Nothing
         if (currentState == State.END_CROSS || currentState == State.END_CIRCLE || currentState == State.END_DRAW)
             Main.gameScreen.gameOver(this);
     }
@@ -93,8 +94,7 @@ public class MultiplayerClientController extends GameController {
                     connection.close(new CloseReason(CloseReason.CloseCodes.GOING_AWAY, "Client left the game!"));
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignore) {
         }
     }
 }

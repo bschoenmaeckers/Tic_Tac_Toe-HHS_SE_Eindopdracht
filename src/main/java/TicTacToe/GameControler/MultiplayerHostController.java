@@ -23,10 +23,6 @@ public class MultiplayerHostController extends GameController {
         server.start();
     }
 
-    public Server getServer() {
-        return server;
-    }
-
     public boolean playerConnected(Session newConnection) {
 
         if (connection == null) {
@@ -75,6 +71,7 @@ public class MultiplayerHostController extends GameController {
         try {
             connection.getBasicRemote().sendObject(new UpdateBoardMessage(field, currentState));
         } catch (IOException | EncodeException e) {
+            System.out.println("Could not send an update to the client because an error accord:");
             e.printStackTrace();
         }
     }

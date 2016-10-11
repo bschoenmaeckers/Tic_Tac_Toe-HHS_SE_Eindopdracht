@@ -10,7 +10,7 @@ import javax.websocket.*;
 public class PlayerEndpoint {
 
     @OnMessage
-    public void handleMessage(MultiplayerMessage message, Session session) {
+    public void handleMessage(MultiplayerMessage message) {
         switch (message.getType()) {
             case MultiplayerMessage.UPDATE_BOARD_MESSAGE:
                 ((MultiplayerClientController) Main.game).updateBoard(((UpdateBoardMessage) message));
