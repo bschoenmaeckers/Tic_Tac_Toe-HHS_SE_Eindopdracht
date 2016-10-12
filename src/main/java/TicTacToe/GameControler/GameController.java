@@ -107,17 +107,22 @@ public class GameController {
         // Diagonal lines
         Tile typeLeft = field[0][0];
         Tile typeRight = field[2][0];
-        boolean tempWon = true;
-        if ((typeLeft == Tile.EMPTY) && (typeRight == Tile.EMPTY)) {
-            tempWon = false;
-        } else {
-            for (int x = 0; x < size; x++) {
-                if ((typeLeft != field[x][x]) && (typeRight != field[(size - 1) - x][(size - 1) - x]))
-                    tempWon = false;
-            }
-            if (tempWon == true)
-                won = true;
+
+        // Check winning condition diagonal \
+        boolean leftWon = true;
+        boolean rightWon = true;
+
+        for (int x = 0; x < size; x++) {
+            System.out.println(x);
+            if (typeLeft == Tile.EMPTY || typeLeft != field[x][x])
+                leftWon = false;
+
+            if (typeRight == Tile.EMPTY || typeRight != field[(size - 1) - x][x])
+                rightWon = false;
         }
+        if (leftWon || rightWon)
+            won = true;
+
 
         if (won) {
             System.out.println("Game Won!");
