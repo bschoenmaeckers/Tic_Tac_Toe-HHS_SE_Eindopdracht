@@ -23,7 +23,6 @@ public class SinglePlayerController extends GameController {
     public boolean move(int positionX, int positionY) {
         boolean result = super.move(positionX, positionY);
 
-        Main.gameScreen.updateScreen(this);
         if (result && !isGameEnded())
             //Update Screen and do AI move.
             SwingUtilities.invokeLater(() -> SwingUtilities.invokeLater(this::moveByAI));

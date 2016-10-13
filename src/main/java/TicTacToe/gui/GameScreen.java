@@ -57,7 +57,7 @@ public abstract class GameScreen extends JFrame {
      * @param y Vertical position
      */
     public void doMove(int x, int y) {
-        if (Main.game.move(x, y)) {
+        if (Main.game.move(x, y) && Main.game != null) {
             this.updateScreen(Main.game);
         }
     }
@@ -75,6 +75,7 @@ public abstract class GameScreen extends JFrame {
      * @param game Current GameController
      */
     public void updateScreen(GameController game) {
+
         if (!game.isGameEnded())
             currentTurn.setText(game.getCurrentState().name());
 
