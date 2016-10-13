@@ -17,7 +17,7 @@ public class SinglePlayerController extends GameController {
      *
      * @param positionX horizontal position
      * @param positionY vertical position
-     * @return
+     * @return boolean, return true whe move was successful.
      */
     @Override
     public boolean move(int positionX, int positionY) {

@@ -14,9 +14,9 @@ public class UpdateBoardMessage extends MultiplayerMessage {
     }
 
     /**
-     * TODO: Explain please
-     * @param board
-     * @param currentTurn
+     * Message to update clients.
+     * @param board current board
+     * @param currentTurn current turn
      */
     public UpdateBoardMessage(Tile[][] board, GameController.State currentTurn) {
         super(UPDATE_BOARD_MESSAGE);
