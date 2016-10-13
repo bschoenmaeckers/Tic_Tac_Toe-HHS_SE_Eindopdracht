@@ -23,7 +23,7 @@ public class HostEndpoint {
 
     @OnClose
     public void onClose(CloseReason reason) {
-        if (reason.getCloseCode() != CloseReason.CloseCodes.NORMAL_CLOSURE && !Main.game.isGameEnded()) {
+        if (reason.getCloseCode() != CloseReason.CloseCodes.NORMAL_CLOSURE && !Main.game.isGameEnded() && reason.getCloseCode() != CloseReason.CloseCodes.CANNOT_ACCEPT) {
             System.out.println("Player disconnected!");
             JOptionPane.showMessageDialog(Main.gameScreen, "The connection to the client has been lost. \n Reason: " + reason.getReasonPhrase(), "Connection lost!", JOptionPane.WARNING_MESSAGE);
             Main.gameScreen.stopGame();
