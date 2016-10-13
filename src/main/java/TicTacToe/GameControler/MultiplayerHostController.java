@@ -17,12 +17,17 @@ public class MultiplayerHostController extends GameController {
     private Session connection;
     private boolean leavingGame = false;
 
+
     public MultiplayerHostController(Tile startingTurn) throws DeploymentException {
         super(startingTurn);
-
         server.start();
     }
 
+    /**
+     * Return state when player connects
+     * @param newConnection Session objec
+     * @return true when succesfully connected
+     */
     public boolean playerConnected(Session newConnection) {
 
         if (connection == null) {
@@ -34,10 +39,21 @@ public class MultiplayerHostController extends GameController {
             return false;
     }
 
+    /**
+     * Set move by parsing message
+     * @param message Message object
+     * @return true when succes
+     */
     public boolean move(MoveMessage message) {
         return currentState == State.CROSS && move(message.getX(), message.getY());
     }
 
+    /**
+     * Set move and update client
+     * @param positionX horizontal position
+     * @param positionY vertical position
+     * @return true when success
+     */
     @Override
     public boolean move(int positionX, int positionY) {
 
@@ -62,11 +78,18 @@ public class MultiplayerHostController extends GameController {
         }
     }
 
+    /**
+     * Returns current end state
+     * @return true when game is ended of client is disconnected
+     */
     @Override
     public boolean isGameEnded() {
         return super.isGameEnded() || leavingGame;
     }
 
+    /**
+     * Update client with current field
+     */
     public void updateClient() {
         try {
             connection.getBasicRemote().sendObject(new UpdateBoardMessage(field, currentState));
@@ -76,6 +99,9 @@ public class MultiplayerHostController extends GameController {
         }
     }
 
+    /**
+     * Stop game and close connection
+     */
     public void stopGame() {
         try {
             if (connection.isOpen()) {
