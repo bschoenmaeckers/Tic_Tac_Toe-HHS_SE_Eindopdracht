@@ -7,10 +7,8 @@ import javax.websocket.EndpointConfig;
 public class DataDecoder implements Decoder.Text<MultiplayerMessage> {
 
     /**
-     * * TODO: Add Javadoc
-     *
-     * @param s
-     * @return
+     * @param s Message to decode
+     * @return Decoded message
      * @throws DecodeException
      */
     @Override
@@ -19,31 +17,19 @@ public class DataDecoder implements Decoder.Text<MultiplayerMessage> {
     }
 
     /**
-     * * TODO: Add Javadoc
-     *
-     * @param s
-     * @return
+     * @param s message
+     * @return true when this is a valid message
      */
     @Override
     public boolean willDecode(String s) {
         return s.startsWith(MultiplayerMessage.UPDATE_BOARD_MESSAGE) || s.startsWith(MultiplayerMessage.MOVE_MESSAGE);
     }
 
-    /**
-     * * TODO: Add Javadoc
-     *
-     * @param config
-     */
     @Override
     public void init(EndpointConfig config) {
-
     }
 
-    /**
-     * * TODO: Add Javadoc
-     */
     @Override
     public void destroy() {
-
     }
 }

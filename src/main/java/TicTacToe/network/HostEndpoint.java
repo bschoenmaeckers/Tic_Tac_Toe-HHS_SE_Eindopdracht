@@ -12,9 +12,9 @@ import java.io.IOException;
 public class HostEndpoint {
 
     /**
-     * * TODO: Add Javadoc
-     *
-     * @param session
+     * Handles incoming connections.
+     * When there is already someone connected all other connections are denied.
+     * @param session incoming connection
      * @throws IOException
      * @throws EncodeException
      */
@@ -29,9 +29,18 @@ public class HostEndpoint {
     }
 
     /**
-     * * TODO: Add Javadoc
-     *
-     * @param reason
+     * Handles incoming messages
+     * @param message
+     */
+    @OnMessage
+    public void handleMessage(MultiplayerMessage message) {
+        if (message.getType().equals(MultiplayerMessage.MOVE_MESSAGE))
+            ((MultiplayerHostController) Main.game).move(((MoveMessage) message));
+    }
+
+    /**
+     * Stops the game and notifies player when the connection has been lost to the other player.
+     * @param reason The reason why the connection has been closed.
      */
     @OnClose
     public void onClose(CloseReason reason) {
@@ -40,16 +49,5 @@ public class HostEndpoint {
             JOptionPane.showMessageDialog(Main.gameScreen, "The connection to the client has been lost. \n Reason: " + reason.getReasonPhrase(), "Connection lost!", JOptionPane.WARNING_MESSAGE);
             Main.gameScreen.stopGame();
         }
-    }
-
-    /**
-     * * TODO: Add Javadoc
-     *
-     * @param message
-     */
-    @OnMessage
-    public void handleMessage(MultiplayerMessage message) {
-        if (message.getType().equals(MultiplayerMessage.MOVE_MESSAGE))
-            ((MultiplayerHostController) Main.game).move(((MoveMessage) message));
     }
 }

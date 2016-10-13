@@ -6,22 +6,21 @@ import java.awt.*;
 
 public class MoveMessage extends MultiplayerMessage {
 
-    public GameController.Tile tile;
-    public Point location;
+    private GameController.Tile tile;
+    private Point location;
 
     /**
-     * * TODO: Add Javadoc
+     * constructs empty move message.
      */
     public MoveMessage() {
         super(MOVE_MESSAGE);
     }
 
     /**
-     * * TODO: Add Javadoc
-     *
-     * @param tile
-     * @param x
-     * @param y
+     * Constructs new move message with given data.
+     * @param tile New value
+     * @param x Horizontal board position
+     * @param y Vertical board position
      */
     public MoveMessage(GameController.Tile tile, int x, int y) {
         super(MOVE_MESSAGE);
@@ -30,27 +29,21 @@ public class MoveMessage extends MultiplayerMessage {
     }
 
     /**
-     * * TODO: Add Javadoc
-     *
-     * @return
+     * @return Horizontal position
      */
     public int getX() {
         return location.x;
     }
 
     /**
-     * * TODO: Add Javadoc
-     *
-     * @return
+     * @return Vertical position
      */
     public int getY() {
         return location.y;
     }
 
     /**
-     * * TODO: Add Javadoc
-     *
-     * @return
+     * @return Message as string
      */
     @Override
     public String asString() {
@@ -58,9 +51,8 @@ public class MoveMessage extends MultiplayerMessage {
     }
 
     /**
-     * * TODO: Add Javadoc
-     *
-     * @param s
+     * Set message data from string
+     * @param s String
      */
     @Override
     public void fromString(String s) {

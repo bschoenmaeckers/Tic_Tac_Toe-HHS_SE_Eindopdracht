@@ -8,19 +8,18 @@ public abstract class MultiplayerMessage {
     String type;
 
     /**
-     * * TODO: Add Javadoc
-     *
-     * @param type
+     * construct message with given type
+     * @param type Message type
      */
     public MultiplayerMessage(String type) {
         this.type = type;
     }
 
     /**
-     * * TODO: Add Javadoc
-     *
-     * @param s
-     * @return
+     * parse string to a message object
+     * @param s message string
+     * @return parsed message
+     * @throws RuntimeException when message could not be parsed.
      */
     public static MultiplayerMessage parseMessage(String s) {
         System.out.println("Parse: " + s);
@@ -38,23 +37,19 @@ public abstract class MultiplayerMessage {
     }
 
     /**
-     * * TODO: Add Javadoc
-     *
-     * @return
+     * @return Message as string
      */
     public abstract String asString();
 
     /**
-     * * TODO: Add Javadoc
-     *
-     * @param s
+     * Set message data from string
+     * @param s String
      */
     public abstract void fromString(String s);
 
     /**
-     * * TODO: Add Javadoc
      *
-     * @return
+     * @return Message type
      */
     public String getType() {
         return type;

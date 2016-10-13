@@ -7,10 +7,8 @@ import javax.websocket.EndpointConfig;
 public class DataEncoder implements Encoder.Text<MultiplayerMessage> {
 
     /**
-     * * TODO: Add Javadoc
-     *
-     * @param message
-     * @return
+     * @param message object
+     * @return message as a string
      * @throws EncodeException
      */
     @Override
@@ -18,19 +16,11 @@ public class DataEncoder implements Encoder.Text<MultiplayerMessage> {
         return message.asString();
     }
 
-    /**
-     * * TODO: Add Javadoc
-     *
-     * @param config
-     */
     @Override
     public void init(EndpointConfig config) {
 
     }
 
-    /**
-     * * TODO: Add Javadoc
-     */
     @Override
     public void destroy() {
 

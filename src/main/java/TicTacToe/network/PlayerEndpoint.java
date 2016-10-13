@@ -13,23 +13,18 @@ import javax.websocket.OnMessage;
 public class PlayerEndpoint {
 
     /**
-     * * TODO: Add Javadoc
-     *
+     * Handles incoming messages
      * @param message
      */
     @OnMessage
     public void handleMessage(MultiplayerMessage message) {
-        switch (message.getType()) {
-            case MultiplayerMessage.UPDATE_BOARD_MESSAGE:
+        if (message.getType().equals(MultiplayerMessage.UPDATE_BOARD_MESSAGE))
                 ((MultiplayerClientController) Main.game).updateBoard(((UpdateBoardMessage) message));
-                break;
-        }
     }
 
     /**
-     * * TODO: Add Javadoc
-     *
-     * @param reason
+     * Notifies player when the connection has been lost to the other player.
+     * @param reason The reason why the connection has been closed.
      */
     @OnClose
     public void onClose(CloseReason reason) {
