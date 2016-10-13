@@ -9,12 +9,20 @@ import javax.websocket.DeploymentException;
 
 public class MultiplayerHostGameScreen extends GameScreen {
 
+    /**
+     * TODO: Add Javadoc
+     * @throws DeploymentException
+     */
     public MultiplayerHostGameScreen() throws DeploymentException {
         super();
         Main.game = new MultiplayerHostController(GameController.Tile.O);
         currentTurn.setText("Waiting for other player...");
     }
 
+    /**
+     * * TODO: Add Javadoc
+     * @param game Current GameController
+     */
     @Override
     public void gameOver(GameController game) {
         updateScreen(game);
@@ -34,12 +42,21 @@ public class MultiplayerHostGameScreen extends GameScreen {
         stopGame();
     }
 
+    /**
+     * * TODO: Add Javadoc
+     * @param x Horizontal position
+     * @param y Vertical position
+     */
     @Override
     public void doMove(int x, int y) {
         if (Main.game.getCurrentState() == GameController.State.CIRCLE)
             super.doMove(x, y);
     }
 
+    /**
+     * * TODO: Add Javadoc
+     * @param game Current GameController
+     */
     @Override
     public void updateScreen(GameController game) {
         super.updateScreen(game);
@@ -50,6 +67,9 @@ public class MultiplayerHostGameScreen extends GameScreen {
             currentTurn.setText("Your turn");
     }
 
+    /**
+     * * TODO: Add Javadoc
+     */
     @Override
     public void stopGame() {
         ((MultiplayerHostController) Main.game).stopGame();

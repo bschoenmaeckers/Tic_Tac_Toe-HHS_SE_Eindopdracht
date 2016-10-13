@@ -25,8 +25,9 @@ public class MainMenu extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
 
-        /*
-          Start SinglePlayerScreen when button is pressed
+        /**
+         * Start SinglePlayerScreen when button is pressed
+         * * TODO: Add Javadoc
          */
         singlePlayerButton.addActionListener(new ActionListener() {
             @Override
@@ -36,8 +37,9 @@ public class MainMenu extends JFrame {
             }
         });
 
-        /*
-          Start LocalMultiPlayerScreen when button is pressed
+        /**
+         * Start LocalMultiPlayerScreen when button is pressed
+         * * TODO: Add Javadoc
          */
         localMultiplayerButton.addActionListener(new ActionListener() {
             @Override
@@ -47,6 +49,9 @@ public class MainMenu extends JFrame {
             }
         });
 
+        /**
+         * * TODO: Add Javadoc
+         */
         hostGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -59,6 +64,9 @@ public class MainMenu extends JFrame {
             }
         });
 
+        /**
+         * * TODO: Add Javadoc
+         */
         joinGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

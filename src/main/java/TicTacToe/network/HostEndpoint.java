@@ -11,6 +11,12 @@ import java.io.IOException;
 @ServerEndpoint(value = "/game", decoders = {DataDecoder.class}, encoders = {DataEncoder.class})
 public class HostEndpoint {
 
+    /**
+     * * TODO: Add Javadoc
+     * @param session
+     * @throws IOException
+     * @throws EncodeException
+     */
     @OnOpen
     public void onOpen(Session session) throws IOException, EncodeException {
         System.out.println("Player connecting!");
@@ -21,6 +27,10 @@ public class HostEndpoint {
         System.out.println("Player connected!");
     }
 
+    /**
+     * * TODO: Add Javadoc
+     * @param reason
+     */
     @OnClose
     public void onClose(CloseReason reason) {
         if (reason.getCloseCode() != CloseReason.CloseCodes.NORMAL_CLOSURE && !Main.game.isGameEnded() && reason.getCloseCode() != CloseReason.CloseCodes.CANNOT_ACCEPT) {
@@ -30,6 +40,10 @@ public class HostEndpoint {
         }
     }
 
+    /**
+     * * TODO: Add Javadoc
+     * @param message
+     */
     @OnMessage
     public void handleMessage(MultiplayerMessage message) {
         if (message.getType().equals(MultiplayerMessage.MOVE_MESSAGE))

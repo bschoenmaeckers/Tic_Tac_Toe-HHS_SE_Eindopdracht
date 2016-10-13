@@ -7,10 +7,19 @@ public abstract class MultiplayerMessage {
 
     String type;
 
+    /**
+     * * TODO: Add Javadoc
+     * @param type
+     */
     public MultiplayerMessage(String type) {
         this.type = type;
     }
 
+    /**
+     * * TODO: Add Javadoc
+     * @param s
+     * @return
+     */
     public static MultiplayerMessage parseMessage(String s) {
         System.out.println("Parse: " + s);
         MultiplayerMessage message;
@@ -26,10 +35,22 @@ public abstract class MultiplayerMessage {
         return message;
     }
 
+    /**
+     * * TODO: Add Javadoc
+     * @return
+     */
     public abstract String asString();
 
+    /**
+     * * TODO: Add Javadoc
+     * @param s
+     */
     public abstract void fromString(String s);
 
+    /**
+     * * TODO: Add Javadoc
+     * @return
+     */
     public String getType() {
         return type;
     }

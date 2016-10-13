@@ -12,6 +12,10 @@ import javax.websocket.OnMessage;
 @ClientEndpoint(encoders = {DataEncoder.class}, decoders = {DataDecoder.class})
 public class PlayerEndpoint {
 
+    /**
+     * * TODO: Add Javadoc
+     * @param message
+     */
     @OnMessage
     public void handleMessage(MultiplayerMessage message) {
         switch (message.getType()) {
@@ -21,6 +25,10 @@ public class PlayerEndpoint {
         }
     }
 
+    /**
+     * * TODO: Add Javadoc
+     * @param reason
+     */
     @OnClose
     public void onClose(CloseReason reason) {
         if (reason.getCloseCode() != CloseReason.CloseCodes.NORMAL_CLOSURE && !Main.game.isGameEnded()) {
