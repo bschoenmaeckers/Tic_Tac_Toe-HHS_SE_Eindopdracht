@@ -21,6 +21,11 @@ public class MultiplayerClientController extends GameController {
     private Session connection;
     private boolean leavingGame = false;
 
+    /**
+     * Connect GUI to server
+     * @param gameScreen Current Gamescreen
+     * @param startingTurn The first player to start
+     */
     public MultiplayerClientController(MultiplayerClientGameScreen gameScreen, Tile startingTurn) {
         super(startingTurn);
 
@@ -46,6 +51,12 @@ public class MultiplayerClientController extends GameController {
         } while (connection == null || !connection.isOpen());
     }
 
+    /**
+     * Make move when possible
+     * @param positionX horizontal position
+     * @param positionY vertical position
+     * @return true when move is succes
+     */
     @Override
     public boolean move(int positionX, int positionY) {
         Tile tile = field[positionX][positionY];
@@ -58,11 +69,17 @@ public class MultiplayerClientController extends GameController {
             } catch (IOException | EncodeException e) {
                 System.out.println("Error while handling player move:");
                 e.printStackTrace();
+                return false;
             }
             return true;
         }
     }
 
+    /**
+     * Update message on gameboard
+     * Whose turn, and if someone has won
+     * @param message Message to be displayed
+     */
     public void updateBoard(UpdateBoardMessage message) {
         this.field = message.board;
         this.currentState = message.currentTurn;
@@ -70,17 +87,27 @@ public class MultiplayerClientController extends GameController {
         checkCurrentState();
     }
 
+    /**
+     * Check if game is ended
+     */
     @Override
     protected void checkCurrentState() {
         if (currentState == State.END_CROSS || currentState == State.END_CIRCLE || currentState == State.END_DRAW)
             Main.gameScreen.gameOver(this);
     }
 
+    /**
+     * Returns true when game is over or disconnected
+     * @return endState
+     */
     @Override
     public boolean isGameEnded() {
         return super.isGameEnded() || leavingGame;
     }
 
+    /**
+     * Close connection from server side
+     */
     public void closeConnection() {
         if (connection == null)
             return;

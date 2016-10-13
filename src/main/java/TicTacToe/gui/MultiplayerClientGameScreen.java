@@ -16,6 +16,9 @@ public class MultiplayerClientGameScreen extends GameScreen {
         Main.game = new MultiplayerClientController(this, GameController.Tile.O);
     }
 
+    /**
+     * Stop game and close connection
+     */
     @Override
     public void stopGame() {
         if (Main.game != null)
@@ -23,6 +26,10 @@ public class MultiplayerClientGameScreen extends GameScreen {
         super.stopGame();
     }
 
+    /**
+     * Display end state in controller
+     * @param game Current GameController
+     */
     @Override
     public void gameOver(GameController game) {
         updateScreen(game);
@@ -41,6 +48,10 @@ public class MultiplayerClientGameScreen extends GameScreen {
         stopGame();
     }
 
+    /**
+     * Update screen and current turn
+     * @param game Current GameController
+     */
     @Override
     public void updateScreen(GameController game) {
         super.updateScreen(game);

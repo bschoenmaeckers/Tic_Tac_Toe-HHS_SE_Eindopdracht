@@ -8,12 +8,7 @@ import javax.swing.*;
 import javax.websocket.DeploymentException;
 
 public class MultiplayerHostGameScreen extends GameScreen {
-
-    /**
-     * TODO: Add Javadoc
-     *
-     * @throws DeploymentException
-     */
+    
     public MultiplayerHostGameScreen() throws DeploymentException {
         super();
         Main.game = new MultiplayerHostController(GameController.Tile.O);
@@ -21,8 +16,7 @@ public class MultiplayerHostGameScreen extends GameScreen {
     }
 
     /**
-     * * TODO: Add Javadoc
-     *
+     * End game and show winner
      * @param game Current GameController
      */
     @Override
@@ -45,8 +39,7 @@ public class MultiplayerHostGameScreen extends GameScreen {
     }
 
     /**
-     * * TODO: Add Javadoc
-     *
+     * Set move
      * @param x Horizontal position
      * @param y Vertical position
      */
@@ -57,8 +50,7 @@ public class MultiplayerHostGameScreen extends GameScreen {
     }
 
     /**
-     * * TODO: Add Javadoc
-     *
+     * Update screen and current turn
      * @param game Current GameController
      */
     @Override
@@ -72,7 +64,7 @@ public class MultiplayerHostGameScreen extends GameScreen {
     }
 
     /**
-     * * TODO: Add Javadoc
+     * Stop game and connection
      */
     @Override
     public void stopGame() {

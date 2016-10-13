@@ -9,16 +9,12 @@ public class UpdateBoardMessage extends MultiplayerMessage {
     public Tile[][] board = new Tile[3][3];
     public GameController.State currentTurn;
 
-    /**
-     * * TODO: Add Javadoc
-     */
     public UpdateBoardMessage() {
         super(UPDATE_BOARD_MESSAGE);
     }
 
     /**
-     * * TODO: Add Javadoc
-     *
+     * TODO: Explain please
      * @param board
      * @param currentTurn
      */
@@ -29,9 +25,8 @@ public class UpdateBoardMessage extends MultiplayerMessage {
     }
 
     /**
-     * * TODO: Add Javadoc
-     *
-     * @return
+     * Display received message string
+     * @return String, parsed string
      */
     @Override
     public String asString() {
@@ -49,9 +44,8 @@ public class UpdateBoardMessage extends MultiplayerMessage {
     }
 
     /**
-     * * TODO: Add Javadoc
-     *
-     * @param s
+     * Update board with current screen from message
+     * @param s MessageString
      */
     @Override
     public void fromString(String s) {
