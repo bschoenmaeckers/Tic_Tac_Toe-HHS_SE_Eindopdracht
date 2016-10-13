@@ -8,6 +8,7 @@ public class DataDecoder implements Decoder.Text<MultiplayerMessage> {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @param s
      * @return
      * @throws DecodeException
@@ -19,6 +20,7 @@ public class DataDecoder implements Decoder.Text<MultiplayerMessage> {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @param s
      * @return
      */
@@ -29,6 +31,7 @@ public class DataDecoder implements Decoder.Text<MultiplayerMessage> {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @param config
      */
     @Override

@@ -9,6 +9,7 @@ public abstract class MultiplayerMessage {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @param type
      */
     public MultiplayerMessage(String type) {
@@ -17,6 +18,7 @@ public abstract class MultiplayerMessage {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @param s
      * @return
      */
@@ -37,18 +39,21 @@ public abstract class MultiplayerMessage {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @return
      */
     public abstract String asString();
 
     /**
      * * TODO: Add Javadoc
+     *
      * @param s
      */
     public abstract void fromString(String s);
 
     /**
      * * TODO: Add Javadoc
+     *
      * @return
      */
     public String getType() {

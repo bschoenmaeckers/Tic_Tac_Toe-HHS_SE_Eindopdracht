@@ -18,6 +18,7 @@ public class MoveMessage extends MultiplayerMessage {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @param tile
      * @param x
      * @param y
@@ -30,6 +31,7 @@ public class MoveMessage extends MultiplayerMessage {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @return
      */
     public int getX() {
@@ -38,6 +40,7 @@ public class MoveMessage extends MultiplayerMessage {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @return
      */
     public int getY() {
@@ -46,6 +49,7 @@ public class MoveMessage extends MultiplayerMessage {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @return
      */
     @Override
@@ -55,6 +59,7 @@ public class MoveMessage extends MultiplayerMessage {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @param s
      */
     @Override

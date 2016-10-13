@@ -14,6 +14,7 @@ public class PlayerEndpoint {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @param message
      */
     @OnMessage
@@ -27,6 +28,7 @@ public class PlayerEndpoint {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @param reason
      */
     @OnClose

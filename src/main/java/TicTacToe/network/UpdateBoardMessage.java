@@ -18,6 +18,7 @@ public class UpdateBoardMessage extends MultiplayerMessage {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @param board
      * @param currentTurn
      */
@@ -29,6 +30,7 @@ public class UpdateBoardMessage extends MultiplayerMessage {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @return
      */
     @Override
@@ -48,6 +50,7 @@ public class UpdateBoardMessage extends MultiplayerMessage {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @param s
      */
     @Override

@@ -8,6 +8,7 @@ public class DataEncoder implements Encoder.Text<MultiplayerMessage> {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @param message
      * @return
      * @throws EncodeException
@@ -19,6 +20,7 @@ public class DataEncoder implements Encoder.Text<MultiplayerMessage> {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @param config
      */
     @Override

@@ -11,6 +11,7 @@ public class MultiplayerHostGameScreen extends GameScreen {
 
     /**
      * TODO: Add Javadoc
+     *
      * @throws DeploymentException
      */
     public MultiplayerHostGameScreen() throws DeploymentException {
@@ -21,6 +22,7 @@ public class MultiplayerHostGameScreen extends GameScreen {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @param game Current GameController
      */
     @Override
@@ -44,6 +46,7 @@ public class MultiplayerHostGameScreen extends GameScreen {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @param x Horizontal position
      * @param y Vertical position
      */
@@ -55,6 +58,7 @@ public class MultiplayerHostGameScreen extends GameScreen {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @param game Current GameController
      */
     @Override

@@ -29,9 +29,9 @@ public class MultiplayerHostController extends GameController {
             connection = newConnection;
             updateClient();
             Main.gameScreen.updateScreen(this);
-            return true;
-        } else
             return false;
+        } else
+            return true;
     }
 
     public boolean move(MoveMessage message) {

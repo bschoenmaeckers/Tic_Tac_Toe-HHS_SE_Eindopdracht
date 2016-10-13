@@ -13,6 +13,7 @@ public class HostEndpoint {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @param session
      * @throws IOException
      * @throws EncodeException
@@ -21,7 +22,7 @@ public class HostEndpoint {
     public void onOpen(Session session) throws IOException, EncodeException {
         System.out.println("Player connecting!");
 
-        if (!((MultiplayerHostController) Main.game).playerConnected(session))
+        if (((MultiplayerHostController) Main.game).playerConnected(session))
             session.close(new CloseReason(CloseReason.CloseCodes.CANNOT_ACCEPT, "Player already connected!"));
 
         System.out.println("Player connected!");
@@ -29,6 +30,7 @@ public class HostEndpoint {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @param reason
      */
     @OnClose
@@ -42,6 +44,7 @@ public class HostEndpoint {
 
     /**
      * * TODO: Add Javadoc
+     *
      * @param message
      */
     @OnMessage
