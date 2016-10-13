@@ -59,7 +59,7 @@ public class MainMenu extends JFrame {
                     Main.gameScreen = new MultiplayerHostGameScreen();
                     MainMenu.this.dispose();
                 } catch (DeploymentException e1) {
-                    JOptionPane.showMessageDialog(MainMenu.this, "Error starting server!", "Error", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(MainMenu.this, "Error starting server! Only one host per device allowed!", "Error", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
