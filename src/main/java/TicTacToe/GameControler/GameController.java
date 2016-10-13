@@ -53,8 +53,8 @@ public class GameController {
         } else {
             field[positionX][positionY] = (currentState == State.CIRCLE) ? Tile.O : Tile.X;
             moves++;
-            checkCurrentState();
             printCurrentState();
+            checkCurrentState();
             return true;
         }
     }
@@ -113,7 +113,6 @@ public class GameController {
         boolean rightWon = true;
 
         for (int x = 0; x < size; x++) {
-            System.out.println(x);
             if (typeLeft == Tile.EMPTY || typeLeft != field[x][x])
                 leftWon = false;
 
