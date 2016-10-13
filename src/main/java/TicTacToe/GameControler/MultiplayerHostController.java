@@ -43,7 +43,7 @@ public class MultiplayerHostController extends GameController {
 
         Tile tile = field[positionX][positionY];
 
-        if (tile != Tile.EMPTY || isGameEnded()) {
+        if (tile != Tile.EMPTY || isGameEnded() || connection == null) {
             return false;
         } else {
             field[positionX][positionY] = (currentState == State.CIRCLE) ? Tile.O : Tile.X;
