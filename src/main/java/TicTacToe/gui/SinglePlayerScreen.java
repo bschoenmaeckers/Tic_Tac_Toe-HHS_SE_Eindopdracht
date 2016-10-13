@@ -6,7 +6,7 @@ import TicTacToe.Main;
 
 import javax.swing.*;
 
-public class SinglePlayerScreen extends OfflineGameScreen {
+public class SinglePlayerScreen extends GameScreen {
 
     public SinglePlayerScreen() {
         super();
@@ -17,6 +17,7 @@ public class SinglePlayerScreen extends OfflineGameScreen {
 
     /**
      * Update screen with current state and shows whos turn it is
+     *
      * @param game Current GameController
      */
     @Override
@@ -30,6 +31,7 @@ public class SinglePlayerScreen extends OfflineGameScreen {
 
     /**
      * Do the move when it is your turn
+     *
      * @param x Horizontal position
      * @param y Vertical position
      */
@@ -41,6 +43,7 @@ public class SinglePlayerScreen extends OfflineGameScreen {
 
     /**
      * Show final state and stop the game
+     *
      * @param game Current GameController
      */
     @Override

@@ -5,7 +5,7 @@ import TicTacToe.Main;
 
 import javax.swing.*;
 
-public class LocalMultiplayerScreen extends OfflineGameScreen {
+public class LocalMultiplayerScreen extends GameScreen {
 
     /**
      * Loads local multi player controller and start the game with Circle player
@@ -19,6 +19,7 @@ public class LocalMultiplayerScreen extends OfflineGameScreen {
 
     /**
      * Display the winning player and ends game
+     *
      * @param game current gamecontroller
      */
     @Override

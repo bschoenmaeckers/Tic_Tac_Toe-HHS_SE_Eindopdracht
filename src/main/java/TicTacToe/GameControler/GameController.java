@@ -7,10 +7,10 @@ public class GameController {
     /**
      * field[horizontal][vertical]
      */
-    private Tile[][] field;
+    protected Tile[][] field;
+    protected int moves = 0;
+    protected State currentState;
     private int size = 3;
-    private int moves = 0;
-    private State currentState;
 
     public GameController(Tile startingTurn) {
 
@@ -53,8 +53,8 @@ public class GameController {
         } else {
             field[positionX][positionY] = (currentState == State.CIRCLE) ? Tile.O : Tile.X;
             moves++;
-            checkCurrentState();
             printCurrentState();
+            checkCurrentState();
             return true;
         }
     }
@@ -70,7 +70,7 @@ public class GameController {
      * Check current playboard and define if there is a different state
      * Updates currentState variable
      */
-    private void checkCurrentState() {
+    protected void checkCurrentState() {
         boolean won = false;
 
         //Horizontal lines
@@ -113,7 +113,6 @@ public class GameController {
         boolean rightWon = true;
 
         for (int x = 0; x < size; x++) {
-            System.out.println(x);
             if (typeLeft == Tile.EMPTY || typeLeft != field[x][x])
                 leftWon = false;
 

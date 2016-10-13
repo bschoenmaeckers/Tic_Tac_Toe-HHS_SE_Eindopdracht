@@ -13,7 +13,8 @@ public class SinglePlayerController extends GameController {
     }
 
     /**
-     *  Do move by user and start moveByAI
+     * Do move by user and start moveByAI
+     *
      * @param positionX horizontal position
      * @param positionY vertical position
      * @return

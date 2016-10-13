@@ -4,8 +4,6 @@ import TicTacToe.GameControler.GameController;
 import TicTacToe.Main;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -14,12 +12,7 @@ public abstract class GameScreen extends JFrame {
     JLabel currentTurn;
     private JPanel panel1;
     private JButton A1, B1, C1, A2, B2, C2, A3, B3, C3;
-    private JButton[][] buttons = // y,x
-            {
-                    {A1, B1, C1},
-                    {A2, B2, C2},
-                    {A3, B3, C3}
-            };
+    private JButton[][] buttons;// y,x
 
     /**
      * Load new gamescreen and loads the buttons
@@ -39,6 +32,12 @@ public abstract class GameScreen extends JFrame {
             }
         });
 
+        buttons = new JButton[][]{
+                {A1, B1, C1},
+                {A2, B2, C2},
+                {A3, B3, C3}
+        };
+
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons[i].length; j++) {
                 final int x = j;
@@ -53,22 +52,30 @@ public abstract class GameScreen extends JFrame {
 
     /**
      * Move current action and visualize it to the board
+     *
      * @param x Horizontal position
      * @param y Vertical position
      */
-    public abstract void doMove(int x, int y);
+    public void doMove(int x, int y) {
+        if (Main.game.move(x, y) && Main.game != null) {
+            this.updateScreen(Main.game);
+        }
+    }
 
     /**
      * Stop current game
+     *
      * @param game Current GameController
      */
     public abstract void gameOver(GameController game);
 
     /**
      * Update gameboard with current field
+     *
      * @param game Current GameController
      */
     public void updateScreen(GameController game) {
+
         if (!game.isGameEnded())
             currentTurn.setText(game.getCurrentState().name());
 
@@ -91,6 +98,8 @@ public abstract class GameScreen extends JFrame {
     public void stopGame() {
         dispose();
         Main.gameScreen = null;
+        Main.game = null;
         Main.menu = new MainMenu();
     }
+
 }
