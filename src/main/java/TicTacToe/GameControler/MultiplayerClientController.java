@@ -84,16 +84,17 @@ public class MultiplayerClientController extends GameController {
         this.field = message.board;
         this.currentState = message.currentTurn;
         Main.gameScreen.updateScreen(this);
-        checkCurrentState();
+        checkCurrentState(true);
     }
 
     /**
      * Check if game is ended
      */
     @Override
-    protected void checkCurrentState() {
+    protected boolean checkCurrentState(boolean realMove) {
         if (currentState == State.END_CROSS || currentState == State.END_CIRCLE || currentState == State.END_DRAW)
             Main.gameScreen.gameOver(this);
+        return realMove;
     }
 
     /**

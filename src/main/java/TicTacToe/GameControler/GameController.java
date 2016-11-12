@@ -54,7 +54,7 @@ public class GameController {
             field[positionX][positionY] = (currentState == State.CIRCLE) ? Tile.O : Tile.X;
             moves++;
             printCurrentState();
-            checkCurrentState();
+            checkCurrentState(true);
             return true;
         }
     }
@@ -70,7 +70,7 @@ public class GameController {
      * Check current playboard and define if there is a different state
      * Updates currentState variable
      */
-    protected void checkCurrentState() {
+    protected boolean checkCurrentState(boolean realMove) {
         boolean won = false;
 
         //Horizontal lines
@@ -123,7 +123,7 @@ public class GameController {
             won = true;
 
 
-        if (won) {
+        if (won && realMove) {
             System.out.println("Game Won!");
             if (currentState == State.CROSS) {
                 currentState = State.END_CROSS;
@@ -139,6 +139,7 @@ public class GameController {
         } else {
             currentState = getOppositePlayer(currentState);
         }
+        return won;
     }
 
     /**

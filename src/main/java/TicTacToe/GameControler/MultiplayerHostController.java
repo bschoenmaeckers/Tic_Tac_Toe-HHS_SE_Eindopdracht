@@ -64,7 +64,7 @@ public class MultiplayerHostController extends GameController {
         } else {
             field[positionX][positionY] = (currentState == State.CIRCLE) ? Tile.O : Tile.X;
             moves++;
-            checkCurrentState();
+            checkCurrentState(true);
             printCurrentState();
 
             if (Main.gameScreen == null)
