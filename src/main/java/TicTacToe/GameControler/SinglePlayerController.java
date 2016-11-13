@@ -31,15 +31,15 @@ public class SinglePlayerController extends GameController {
         return result;
     }
 
-    private boolean fakeMove(int positionX, int positionY) {
-        Tile tile = field[positionX][positionY];
+    private boolean fakeMove(int positionX, int positionY, Tile tile) {
+        Tile tilePos = field[positionX][positionY];
         State lastState = currentState;
         Tile[][] lastField = deepCopy(field);
 
-        if (tile != Tile.EMPTY || isGameEnded()) {
+        if (tilePos != Tile.EMPTY || isGameEnded()) {
             return false;
         } else {
-            field[positionX][positionY] = Tile.O;
+            field[positionX][positionY] = tile;
             boolean result = checkCurrentState(false);
             currentState = lastState;
             field = lastField;
@@ -61,23 +61,43 @@ public class SinglePlayerController extends GameController {
 
         int x = 0;
         int y = 0;
-        boolean losing = false;
+        boolean foundMove = false;
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (fakeMove(i,j)){
-                    System.out.println("Found winning move! Taking action!");
-                    losing = true;
+                if (fakeMove(i, j, Tile.X)) {
+                    System.out.println("Found winning move!");
+                    foundMove = true;
                     x = i;
                     y = j;
                     break;
                 }
             }
-            if (losing)
+            if (foundMove)
                 break;
         }
 
-        if (!losing){
+        if (this.isEmptyTile(1, 1)) {
+            System.out.println("Taking middle tile!");
+            foundMove = true;
+            x = y = 1;
+        }
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (fakeMove(i, j, Tile.O)) {
+                    System.out.println("Losing! Taking action!");
+                    foundMove = true;
+                    x = i;
+                    y = j;
+                    break;
+                }
+            }
+            if (foundMove)
+                break;
+        }
+
+        if (!foundMove) {
             do {
                 x = rand.nextInt(3);
                 y = rand.nextInt(3);
